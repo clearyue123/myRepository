@@ -2,10 +2,14 @@ package com.pinyougou.controller.manage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pinyougou.common.ApiResult;
+import com.pinyougou.pojo.TbContent;
 import com.pinyougou.pojo.TbGoodsDesc;
 import com.pinyougou.service.sellergoods.GoodsDescService;
 
@@ -112,4 +116,19 @@ public class GoodsDescController {
 		return goodsDescService.findPage(goodsDesc, page, rows);		
 	}
 	
+	/**
+	 * 查询+分页  小程序
+	 * @param brand
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/getGoodsDescList")
+	public ApiResult getGoodsDescList(@RequestBody 
+			@RequestParam(required = true, defaultValue = "0", value = "page") int page,
+			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
+			@PathVariable TbGoodsDesc goodsDesc){
+		PageResult result = goodsDescService.findPage(goodsDesc, page, rows);		
+		return new ApiResult(200,"获取成功",result);
+	}
 }

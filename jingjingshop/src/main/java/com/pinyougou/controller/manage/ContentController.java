@@ -1,15 +1,19 @@
 package com.pinyougou.controller.manage;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pinyougou.common.ApiResult;
 import com.pinyougou.pojo.TbContent;
 import com.pinyougou.service.content.ContentService;
 
 import entity.PageResult;
 import entity.Result;
+import util.TextUtils;
 /**
  * controller
  * @author Administrator
@@ -110,4 +114,19 @@ public class ContentController {
 		return contentService.findPage(content, page, rows);		
 	}
 	
+	/**
+	 * 返回全部列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/getContentList")
+	public ApiResult findPage(@RequestParam(required = true, defaultValue = "0", value = "page") int page,
+			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
+			@PathVariable TbContent tbContent) {
+		if(TextUtils.isBlank(tbContent.getUserId())){
+			return new ApiResult(101,"用户id为空", null);
+		}
+		PageResult pageResult = contentService.findContentPage(page, rows,tbContent);
+		return new ApiResult(200,"获取成功", pageResult);
+	}
 }

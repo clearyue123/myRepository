@@ -2,16 +2,21 @@ package com.pinyougou.controller.manage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pinyougou.common.ApiResult;
+import com.pinyougou.pojo.TbContent;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.group.Goods;
 import com.pinyougou.service.sellergoods.GoodsService;
 
 import entity.PageResult;
 import entity.Result;
+import util.TextUtils;
 /**
  * controller
  * @author Administrator
@@ -127,6 +132,36 @@ public class GoodsController {
 	
 	@RequestMapping("/genHtml")
 	public void genHtml(Long goodsId){
+	}
+	
+	/**
+	 * 小程序接口
+	 * @param brand
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/getGoodsList")
+	public ApiResult getGoodsList(@RequestBody
+			@RequestParam(required = true, defaultValue = "0", value = "page") int page,
+			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
+			@PathVariable TbGoods goods){
+		if(TextUtils.isBlank(goods.getUserId())){
+			return new ApiResult(101,"用户id为空", null);
+		}
+		PageResult result = goodsService.findPage(goods, page, rows);		
+		return new ApiResult(200,"查询成功", result); 
+	}
+	
+	/**
+	 * 根据id获取商品
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/getGoodsDetail")
+	public ApiResult getGoodsDetail(@RequestBody @RequestParam("id") Long id){
+		Goods goods = goodsService.findOne(id);	
+		return 	new ApiResult(200,"查询成功", goods); 
 	}
 	
 }

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.pinyougou.pojo.TbContent;
 import com.pinyougou.pojo.TbContentExample;
 
-public interface TbContentMapper {
+public interface TbContentMapper{
     int countByExample(TbContentExample example);
 
     int deleteByExample(TbContentExample example);

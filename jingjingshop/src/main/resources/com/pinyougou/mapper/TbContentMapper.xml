@@ -240,4 +240,9 @@
       sort_order = #{sortOrder,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectList" parameterType="com.pinyougou.pojo.TbContent" resultMap="BaseResultMap">
+  	select * from tb_content
+  	
+  </select>
 </mapper>
