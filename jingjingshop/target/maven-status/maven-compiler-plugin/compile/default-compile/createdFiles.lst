@@ -4,6 +4,7 @@ com\pinyougou\mapper\TbSpecificationMapper.class
 com\pinyougou\pojo\TbItemExample$Criterion.class
 entity\Result.class
 com\pinyougou\service\content\ContentCategoryService.class
+com\pinyougou\common\BaseResult.class
 com\pinyougou\pojo\TbContentCategoryExample.class
 com\pinyougou\pojo\TbTypeTemplate.class
 com\pinyougou\pojo\TbGoodsExample$GeneratedCriteria.class
@@ -89,6 +90,7 @@ com\pinyougou\pojo\TbCitiesExample$GeneratedCriteria.class
 com\pinyougou\service\content\impl\ContentCategoryServiceImpl.class
 com\pinyougou\pojo\TbPayLog.class
 com\pinyougou\mapper\TbAreasMapper.class
+util\TextUtils.class
 com\pinyougou\service\sellergoods\impl\TypeTemplateServiceImpl.class
 com\pinyougou\pojo\TbFreightTemplate.class
 com\pinyougou\pojo\TbUserExample$Criterion.class
@@ -126,7 +128,9 @@ com\pinyougou\service\sellergoods\impl\SpecificationServiceImpl.class
 com\pinyougou\pojo\TbSeckillGoodsExample.class
 com\pinyougou\mapper\TbSeckillOrderMapper.class
 com\pinyougou\service\sellergoods\impl\ItemServiceImpl.class
+com\pinyougou\common\ApiResultConstant.class
 com\pinyougou\controller\manage\SpecificationController.class
+com\pinyougou\pojo\TbBase.class
 com\pinyougou\pojo\TbItemCatExample$Criterion.class
 com\pinyougou\pojo\TbTypeTemplateExample$Criteria.class
 com\pinyougou\pojo\TbUserExample$Criteria.class
@@ -145,6 +149,7 @@ com\pinyougou\service\sellergoods\SpecificationOptionService.class
 com\pinyougou\pojo\TbPayLogExample$Criterion.class
 com\pinyougou\pojo\TbItemCatExample$Criteria.class
 com\pinyougou\pojo\TbTypeTemplateExample.class
+com\pinyougou\common\ApiResult.class
 com\pinyougou\pojo\TbSeckillOrderExample$Criterion.class
 com\pinyougou\pojo\TbAddressExample.class
 com\pinyougou\service\sellergoods\ItemService.class
