@@ -1,6 +1,7 @@
 package com.pinyougou.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,10 @@ public interface TbOrderMapper {
     int updateByPrimaryKeySelective(TbOrder record);
 
     int updateByPrimaryKey(TbOrder record);
+    
+    List<Map<String,Object>> selectListOrder(Map<String,Object> paramMap);
+    
+    Map<String,Object> showOrderDetail(Map<String,Object> paramMap);
+    
+	void updateStatusById(Map<String, Object> paramMap);
 }

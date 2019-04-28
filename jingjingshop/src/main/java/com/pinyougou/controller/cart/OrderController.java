@@ -1,13 +1,15 @@
 package com.pinyougou.controller.cart;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.service.order.OrderService;
 
@@ -15,7 +17,7 @@ import entity.PageResult;
 import entity.Result;
 /**
  * controller
- * @author Administrator
+ * @author yue
  *
  */
 @RestController
@@ -108,7 +110,7 @@ public class OrderController {
 		}
 	}
 	
-		/**
+	/**
 	 * 查询+分页
 	 * @param brand
 	 * @param page
@@ -118,6 +120,106 @@ public class OrderController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbOrder order, int page, int rows  ){
 		return orderService.findPage(order, page, rows);		
+	}
+	
+	
+	/**
+	 * 小程序接口  订单列表查询
+	 * @param userId
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("/ordersList")
+	public List<Map<String,Object>> OrdersList(@RequestParam(required = true, value = "userId")String userId,
+			                  @RequestParam(required = true, value = "status")String status){
+		return orderService.orderList(userId, status);
+	}
+	
+	/**
+	 * 小程序接口 订单删除
+	 * @param orderId
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("/delOrder")
+	public Result delOrder(@RequestParam(required = true, value = "orderId")String orderId,
+            @RequestParam(required = true, value = "userId")String userId){
+		orderService.delOrderById(Long.parseLong(orderId));
+		return new Result(true,"删除成功");
+	}
+	
+	/**
+	 * 小程序接口 订单详情
+	 * @param userId
+	 * @param userType
+	 * @param orderId
+	 * @param status
+	 * @return
+	 */
+	public Map<String,Object> showOrderDetail(
+			          @RequestParam(required=true,value="userId")String userId,
+			          @RequestParam(required=true,value="userType")String userType,
+			          @RequestParam(required=true,value="orderId")String orderId,
+			          @RequestParam(required=true,value="status")String status
+			          ){
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("userId", userId);
+		paramMap.put("userType", userType);
+		paramMap.put("orderId", orderId);
+		paramMap.put("status", status);
+		return orderService.selectOrderDetail(paramMap);
+	}
+	
+	/**
+	 * 小程序接口 
+	 * operateFlag 
+	 *   0:取消订单
+	 *   1:提醒发货
+	 *   2:已收货
+	 * @param userId
+	 * @param userType
+	 * @param orderId
+	 * @param operateFlag
+	 * @return
+	 */
+	public Result oprateOrder(
+			  @RequestParam(required=true,value="userId")String userId,
+	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=true,value="orderId")String orderId,
+	          @RequestParam(required=true,value="operateFlag")String operateFlag){
+		if("0".equals(operateFlag)){//取消订单
+			orderService.delOrderById(Long.parseLong(userId));
+			return new Result(true, "已取消订单");
+		}else if("1".equals(operateFlag)){//提醒发货
+			return new Result(true, "已提醒发货");
+		}else{//已收货
+			Map<String,Object> paramMap = new HashMap<>();
+			paramMap.put("ORDERID", orderId);
+			paramMap.put("STATUS", "5");//交易成功
+			orderService.updateStatusById(paramMap);
+			return new Result(true, "已收货");
+		}
+	}
+	
+	/**
+	 * 小程序接口 支付成功
+	 * 支付成功后修改订单状态
+	 * @param userId
+	 * @param userType
+	 * @param orderId
+	 * @param message
+	 * @return
+	 */
+	public Result payOrder( 
+			  @RequestParam(required=true,value="userId")String userId,
+	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=true,value="orderId")String orderId,
+	          @RequestParam(required=true,value="message")String message){
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("ORDERID", orderId);
+		paramMap.put("STATUS", "2");//交易成功
+		orderService.updateStatusById(paramMap);
+		return new Result(true, "支付成功");
 	}
 	
 }

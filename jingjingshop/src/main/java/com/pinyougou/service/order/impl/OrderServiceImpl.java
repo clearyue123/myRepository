@@ -1,7 +1,9 @@
 package com.pinyougou.service.order.impl;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -177,18 +179,50 @@ public class OrderServiceImpl implements OrderService {
 		
 		payLogMapper.updateByPrimaryKey(payLog);//修改
 		//2.修改订单表的状态
-		String orderList = payLog.getOrderList();// 订单ID 串
-		String[] orderIds = orderList.split(",");
-		
-		for(String orderId:orderIds){
-			TbOrder order = orderMapper.selectByPrimaryKey(Long.valueOf(orderId));
-			order.setStatus("2");//已付款状态
-			order.setPaymentTime(new Date());//支付时间
-			orderMapper.updateByPrimaryKey(order);			
-		}
-		
 		//3.清除缓存中的payLog
 		
+	}
+
+	@Override
+	public List<Map<String, Object>> orderList(String userId, String status) {
+		try{
+			Map<String,Object> paramMap = new HashMap<>();
+			paramMap.put("USERID", userId);
+			paramMap.put("STATUS", status);
+			List<Map<String, Object>> orderList = orderMapper.selectListOrder(paramMap);
+			return orderList;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void delOrderById(Long orderId) {
+		try{
+			orderMapper.deleteByPrimaryKey(orderId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Map<String, Object> selectOrderDetail(Map<String, Object> paramMap) {
+		try{
+		    return orderMapper.showOrderDetail(paramMap);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void updateStatusById(Map<String,Object> paramMap) {
+		try{
+			orderMapper.updateStatusById(paramMap);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 }

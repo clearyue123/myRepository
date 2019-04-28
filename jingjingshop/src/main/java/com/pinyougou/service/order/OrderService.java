@@ -1,5 +1,6 @@
 package com.pinyougou.service.order;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
@@ -75,5 +76,31 @@ public interface OrderService {
 	 */
 	public void updateOrderStatus(String out_trade_no,String transaction_id);
 	
+	/**
+	 * 小程序接口 列表功能
+	 * 用户id获取订单详情
+	 * @param userId
+	 * @param status
+	 * @return
+	 */
+	public List<Map<String, Object>> orderList(String userId,String status);
 	
+	/**
+	 * 小程序接口 orderId删除订单
+	 * @param orderId
+	 */
+	public void delOrderById(Long orderId);
+	
+	/**
+	 * 小程序接口 订单详情
+	 * @param map
+	 * @return
+	 */
+	public Map<String,Object> selectOrderDetail(Map<String,Object> map); 
+	
+	/**
+	 * 小程序接口 收货
+	 * @param orderId
+	 */
+	public void updateStatusById(Map<String,Object> paramMap);
 }

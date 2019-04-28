@@ -72,13 +72,9 @@ public class CartController {
 		
 		//response.setHeader("Access-Control-Allow-Origin", "http://localhost:9105");//可以访问的域(当此方法不需要操作cookie)
 		//response.setHeader("Access-Control-Allow-Credentials", "true");//如果操作cookie，必须加上这句话
-		
 		//当前登录人账号
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		System.out.println("当前登录人："+name);
-		
-	
-		
 		try {
 			//提取购物车
 			List<Cart> cartList = findCartList();
@@ -90,18 +86,14 @@ public class CartController {
 				String cartListString = JSON.toJSONString(cartList);
 				util.CookieUtil.setCookie(request, response, "cartList", cartListString, 3600*24, "UTF-8");
 				System.out.println("向cookie存储购物车");		
-				
 			}else{//如果登录				
 				cartService.saveCartListToRedis(name, cartList);				
 			}
-
 			return new Result(true, "存入购物车成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "存入购物车失败");
 		}
-		
-		
 	}
 	
 	
