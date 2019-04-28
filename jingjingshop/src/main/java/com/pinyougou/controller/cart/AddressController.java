@@ -1,10 +1,11 @@
 package com.pinyougou.controller.cart;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pinyougou.pojo.TbAddress;
@@ -14,7 +15,7 @@ import entity.PageResult;
 import entity.Result;
 /**
  * controller
- * @author Administrator
+ * @author yue
  *
  */
 @RestController
@@ -44,14 +45,38 @@ public class AddressController {
 	}
 	
 	/**
-	 * 增加
+	 * 新增地址
+	 * @param userId
+	 * @param provinceId
+	 * @param cityId
+	 * @param townId
+	 * @param mobile
 	 * @param address
+	 * @param contact
+	 * @param alias
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbAddress address){
+	public Result add(@RequestParam(required = true, value = "userId")String userId,
+			          @RequestParam(required = true, value = "provinceId")String provinceId,
+			          @RequestParam(required = true, value = "cityId")String cityId,
+			          @RequestParam(required = true, value = "townId")String townId,
+			          @RequestParam(required = true, value = "mobile")String mobile,
+			          @RequestParam(required = true, value = "address")String address,
+			          @RequestParam(required = true, value = "contact")String contact,
+			          @RequestParam(required = true, value = "alias")String alias){
 		try {
-			addressService.add(address);
+			TbAddress tbAddress = new TbAddress();
+			tbAddress.setUserId(userId);
+			tbAddress.setProvinceId(provinceId);
+			tbAddress.setCityId(cityId);
+			tbAddress.setTownId(townId);
+			tbAddress.setMobile(mobile);
+			tbAddress.setAddress(address);
+			tbAddress.setContact(contact);
+			tbAddress.setAlias(alias);
+			tbAddress.setCreateDate(new Date());
+			addressService.add(tbAddress);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,8 +141,13 @@ public class AddressController {
 	@RequestMapping("/findListByLoginUser")
 	public List<TbAddress> findListByLoginUser(){
 		//获取登陆用户
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		String username = "zhaoliu";
 		return addressService.findListByUserId(username);		
 	}
+	
+	@RequestMapping("/findListByUserId")
+    public List<TbAddress> findListByUserId(String userId){
+		return addressService.findListByUserId(userId);
+	}	
 	
 }

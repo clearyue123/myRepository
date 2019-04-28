@@ -1,7 +1,7 @@
 package com.pinyougou.common;
 
 /**
- * 统一返回结果类 Created by shuzheng on 2017/2/18.
+ * 统一返回结果类
  */
 public class BaseResult {
 	/**

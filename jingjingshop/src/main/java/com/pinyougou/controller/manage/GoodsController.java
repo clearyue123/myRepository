@@ -141,17 +141,17 @@ public class GoodsController {
 	 * @param rows
 	 * @return
 	 */
-	@RequestMapping("/getGoodsList")
-	public ApiResult getGoodsList(@RequestBody
-			@RequestParam(required = true, defaultValue = "0", value = "page") int page,
-			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
-			@PathVariable TbGoods goods){
-		if(TextUtils.isBlank(goods.getUserId())){
-			return new ApiResult(101,"用户id为空", null);
-		}
-		PageResult result = goodsService.findPage(goods, page, rows);		
-		return new ApiResult(200,"查询成功", result); 
-	}
+//	@RequestMapping("/getGoodsList")
+//	public ApiResult getGoodsList(@RequestBody
+//			@RequestParam(required = true, defaultValue = "0", value = "page") int page,
+//			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
+//			@PathVariable TbGoods goods){
+//		if(TextUtils.isBlank(goods.getUserId())){
+//			return new ApiResult(101,"用户id为空", null);
+//		}
+//		PageResult result = goodsService.findPage(goods, page, rows);		
+//		return new ApiResult(200,"查询成功", result); 
+//	}
 	
 	/**
 	 * 根据id获取商品

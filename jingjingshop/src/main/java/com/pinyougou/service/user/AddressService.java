@@ -6,7 +6,7 @@ import com.pinyougou.pojo.TbAddress;
 import entity.PageResult;
 /**
  * 服务层接口
- * @author Administrator
+ * @author yue
  *
  */
 public interface AddressService {

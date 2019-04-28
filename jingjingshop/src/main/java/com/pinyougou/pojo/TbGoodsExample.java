@@ -64,6 +64,13 @@ public class TbGoodsExample {
         distinct = false;
     }
 
+    /**
+     * 
+     * 
+     * @author wcyong
+     * 
+     * @date 2019-04-26
+     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -1144,6 +1151,66 @@ public class TbGoodsExample {
             addCriterion("is_delete not between", value1, value2, "isDelete");
             return (Criteria) this;
         }
+
+        public Criteria andReducedPriceIsNull() {
+            addCriterion("reduced_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceIsNotNull() {
+            addCriterion("reduced_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceEqualTo(BigDecimal value) {
+            addCriterion("reduced_price =", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceNotEqualTo(BigDecimal value) {
+            addCriterion("reduced_price <>", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceGreaterThan(BigDecimal value) {
+            addCriterion("reduced_price >", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("reduced_price >=", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceLessThan(BigDecimal value) {
+            addCriterion("reduced_price <", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("reduced_price <=", value, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceIn(List<BigDecimal> values) {
+            addCriterion("reduced_price in", values, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceNotIn(List<BigDecimal> values) {
+            addCriterion("reduced_price not in", values, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("reduced_price between", value1, value2, "reducedPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andReducedPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("reduced_price not between", value1, value2, "reducedPrice");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -1153,6 +1220,13 @@ public class TbGoodsExample {
         }
     }
 
+    /**
+     * 
+     * 
+     * @author wcyong
+     * 
+     * @date 2019-04-26
+     */
     public static class Criterion {
         private String condition;
 
