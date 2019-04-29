@@ -162,6 +162,7 @@ public class OrderController {
 	 * @param status
 	 * @return
 	 */
+	@RequestMapping("/showOrderDetail")
 	public Map<String,Object> showOrderDetail(
 			          @RequestParam(required=true,value="userId")String userId,
 			          @RequestParam(required=true,value="userType")String userType,
@@ -188,6 +189,7 @@ public class OrderController {
 	 * @param operateFlag
 	 * @return
 	 */
+	@RequestMapping("/oprateOrder")
 	public Result oprateOrder(
 			  @RequestParam(required=true,value="userId")String userId,
 	          @RequestParam(required=true,value="userType")String userType,
@@ -216,6 +218,7 @@ public class OrderController {
 	 * @param message
 	 * @return
 	 */
+	@RequestMapping("/payOrder")
 	public Result payOrder( 
 			  @RequestParam(required=true,value="userId")String userId,
 	          @RequestParam(required=true,value="userType")String userType,
@@ -235,6 +238,7 @@ public class OrderController {
 	 * @param listParams
 	 * @return
 	 */
+	@RequestMapping("/createOrder")
 	public Result createOrder(
 			@RequestParam(required=true,value="userId")String userId,
 	        @RequestParam(required=true,value="userType")String userType,

@@ -5,4 +5,8 @@ app.service("userService",function($http){
 		return $http.post("../user/search.do?page="+page+"&rows="+rows,searchEntity);
 	}
 	
+	this.save = function(entity){
+		alert("save2...")
+		return $http.post("../user/add.do",entity);
+	}
 });

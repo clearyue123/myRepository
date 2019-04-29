@@ -49,8 +49,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbUser user,String smscode){
+	public Result add(@RequestBody TbUser user){
 		try {
+			System.out.println(user.getUsername());
 			userService.add(user);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {

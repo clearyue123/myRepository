@@ -13,4 +13,9 @@ app.controller("userController",function($scope,$controller,$http,userService){
 		});
 	}
 	
+	$scope.save=function(){
+		alert("save1...");
+		userService.save($scope.entity);
+	}
+	
 });
