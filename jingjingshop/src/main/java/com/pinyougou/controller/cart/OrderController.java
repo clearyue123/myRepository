@@ -1,4 +1,6 @@
 package com.pinyougou.controller.cart;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pinyougou.mapper.TbOrderItemMapper;
 import com.pinyougou.pojo.TbOrder;
+import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.service.order.OrderService;
 
 import entity.PageResult;
 import entity.Result;
+import util.IdWorker;
 /**
  * controller
  * @author yue
@@ -26,7 +31,8 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
-	
+	@Autowired
+	private TbOrderItemMapper orderItemMapper;
 	/**
 	 * 返回全部列表
 	 * @return
@@ -222,4 +228,54 @@ public class OrderController {
 		return new Result(true, "支付成功");
 	}
 	
+	/**
+	 * 订单支付成功
+	 * @param userId
+	 * @param userType
+	 * @param listParams
+	 * @return
+	 */
+	public Result createOrder(
+			@RequestParam(required=true,value="userId")String userId,
+	        @RequestParam(required=true,value="userType")String userType,
+	        @RequestParam(required=true,value="receiverAreaName")String receiverAreaName,
+	        @RequestParam(required=true,value="receiverMobile")String receiverMobile,
+	        @RequestParam(required=true,value="receiver")String receiver,
+	        @RequestParam(required=true,value="listOrderParams")List<Map<String,Object>> listOrderParams){
+		TbOrder tbOrder = new TbOrder();
+		TbOrderItem tbOrderItem = new TbOrderItem();
+		//设置orderId
+		IdWorker idWorker = new IdWorker(0,0);
+		long orderId = idWorker.nextId();
+		tbOrder.setOrderId(orderId);
+		tbOrder.setPaymentType("1");//支付类型
+		tbOrder.setStatus("1");//未付款 
+		tbOrder.setCreateTime(new Date());//下单时间
+		tbOrder.setUpdateTime(new Date());//更新时间
+		tbOrder.setUserId(userId);//当前用户
+		tbOrder.setReceiverAreaName(receiverAreaName);//收货人地址
+		tbOrder.setReceiverMobile(receiverMobile);//收货人电话
+		tbOrder.setReceiver(receiver);//收货人
+		orderService.add(tbOrder);
+		for(Map<String,Object> orderParams:listOrderParams){
+			long orderItemId = idWorker.nextId();
+			Long itemId = (Long)orderParams.get("itemId");
+			Long goodsId = (Long)orderParams.get("goodsId");
+			String sellerId = (String)orderParams.get("sellerId");
+			Integer num = (Integer)orderParams.get("num");
+			String picPath = (String)orderParams.get("picPath");
+			Double price = (Double)orderParams.get("price");
+			Double totalFee = price*num;
+			tbOrderItem.setId(orderItemId);
+			tbOrderItem.setItemId(itemId);
+			tbOrderItem.setGoodsId(goodsId);
+			tbOrderItem.setSellerId(sellerId);
+			tbOrderItem.setNum(num);
+			tbOrderItem.setPicPath(picPath);
+			tbOrderItem.setPrice(new BigDecimal(price.toString()));
+			tbOrderItem.setTotalFee(new BigDecimal(totalFee.toString()));
+			orderItemMapper.insert(tbOrderItem);
+		}
+		return new Result(true, "订单支付成功");
+	}
 }

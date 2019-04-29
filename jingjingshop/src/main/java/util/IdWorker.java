@@ -160,11 +160,11 @@ public class IdWorker {
     }
 
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 		
     	IdWorker idWorker=new IdWorker(1,1);
     	long nextId = idWorker.nextId();
     	System.out.println(nextId);
-	}
+	}*/
 
 }
