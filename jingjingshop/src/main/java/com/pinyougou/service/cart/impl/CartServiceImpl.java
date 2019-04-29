@@ -7,16 +7,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pinyougou.mapper.TbGoodsCartMapper;
 import com.pinyougou.mapper.TbItemMapper;
+import com.pinyougou.pojo.TbGoodsCart;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.group.Cart;
 import com.pinyougou.service.cart.CartService;
+
+import entity.PageResult;
 @Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private TbItemMapper itemMapper;
+	
+	@Autowired
+	private TbGoodsCartMapper goodsCartMapper;
 	
 	@Override
 	public List<Cart> addGoodsToCartList(List<Cart> cartList, Long itemId, Integer num) {
@@ -148,6 +155,12 @@ public class CartServiceImpl implements CartService {
 			}
 		}
 		return cartList1;		
+	}
+
+	@Override
+	public PageResult findPage(TbGoodsCart tbGoodsCart, int page, int rows) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

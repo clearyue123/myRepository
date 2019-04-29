@@ -9,13 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.pinyougou.common.ApiResult;
+import com.pinyougou.pojo.TbGoodsCart;
 import com.pinyougou.pojo.group.Cart;
 import com.pinyougou.service.cart.CartService;
 
+import entity.PageResult;
 import entity.Result;
+import util.ProjectCodeBook;
+import util.TextUtils;
 
 @RestController
 @RequestMapping("/cart")
@@ -67,7 +73,7 @@ public class CartController {
 	}
 	
 	@RequestMapping("/addGoodsToCartList")
-	@CrossOrigin(origins="http://localhost:9105")
+//	@CrossOrigin(origins="http://localhost:9105")
 	public Result addGoodsToCartList(Long itemId,Integer num){
 		
 		//response.setHeader("Access-Control-Allow-Origin", "http://localhost:9105");//可以访问的域(当此方法不需要操作cookie)
@@ -96,5 +102,21 @@ public class CartController {
 		}
 	}
 	
+	
+	
+	
+	
+	@RequestMapping("/getCartList")
+	public ApiResult getCartList(@RequestParam(required = false, defaultValue = "0", value = "page") int page,
+			@RequestParam(required = false, defaultValue = "10", value = "rows") int rows,
+			@RequestParam(required = true, defaultValue = "userId", value = "userId") String userId) {
+		if (TextUtils.isBlank(userId) || !ProjectCodeBook.isNumeric(userId)) {
+			return new ApiResult(101, "用户id为空", null);
+		}
+		TbGoodsCart tbGoodsCart = new TbGoodsCart();
+		tbGoodsCart.setUserWxId(Integer.valueOf(userId));
+		PageResult result = cartService.findPage(tbGoodsCart, page, rows);
+		return new ApiResult(200, "获取成功", result);
+	}
 	
 }
