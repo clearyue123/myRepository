@@ -2,7 +2,10 @@ package com.pinyougou.service.cart;
 
 import java.util.List;
 
+import com.pinyougou.pojo.TbGoodsCart;
 import com.pinyougou.pojo.group.Cart;
+
+import entity.PageResult;
 
 /**
  * 购物车服务接口
@@ -41,5 +44,8 @@ public interface CartService {
 	 * @return
 	 */
 	public List<Cart> mergeCartList(List<Cart> cartList1,List<Cart> cartList2);
+
+	
+	public PageResult findPage(TbGoodsCart tbGoodsCart, int page, int rows);
 	 
 }
