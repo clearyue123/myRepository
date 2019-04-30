@@ -185,8 +185,8 @@
 
 
   <insert id="insert" parameterType="com.pinyougou.pojo.TbUser"      >
-    insert into tb_user (id,username, name, phone, head_pic,birthday )
-    values (#{id,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},  #{phone,jdbcType=VARCHAR}, #{head_pic}, #{birthday})
+    insert into tb_user (username, name, phone, head_pic,birthday )
+    values (#{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},  #{phone,jdbcType=VARCHAR}, #{head_pic}, #{birthday})
   </insert>
 
 
