@@ -14,30 +14,29 @@ app.controller("orderController",function($scope,$controller,$http,orderService)
 		});
 	}
 	
-	//新增功能
-	$scope.save = function(){
-		// 区分是保存还是修改
-		var object;
-		if($scope.entity.id != null){
-			// 更新
-			object = orderService.update($scope.entity);
-		}else{
-			// 保存
-			object = orderService.save($scope.entity);
-		}
-		object.success(function(response){
-			// {flag:true,message:xxx}
-			// 判断保存是否成功:
-			if(response.flag==true){
-				// 保存成功
-				alert(response.message);
-				$scope.reloadList();
-			}else{
-				// 保存失败
-				alert(response.message);
-			}
+	$scope.update = function(){
+		alert("update ...");
+		orderService.update($scope.entity);
+	}
+
+	$scope.findById = function(id){
+		alert(id);
+		orderService.findById(id).success(function(response){
+			$scope.entity = response;
 		});
 	}
 	
+	$scope.engineer = {
+            name: "Dani",
+            currentActivity: "Fixing bugs"
+        };
+     
+    $scope.activities =
+        [
+            "Writing code",
+            "Testing code",
+            "Fixing bugs",
+            "Dancing"
+        ];
 	
 });

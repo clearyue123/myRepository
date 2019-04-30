@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * 
  * @date 2019-04-26
  */
-public class TbGoods {
+public class TbGoods extends TbBase{
     /**
      * 主键
      */

@@ -1,6 +1,8 @@
 package com.pinyougou.controller.cart;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pinyougou.common.ApiResult;
 import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.service.user.AddressService;
 
@@ -112,8 +115,14 @@ public class AddressController {
 	 * @return
 	 */
 	@RequestMapping("/findListByUserId")
-    public List<TbAddress> findListByUserId(String userId){
-		return addressService.findListByUserId(userId);
+    public Object findListByUserId(String userId){
+		try{
+			List<TbAddress> listAddress = (List<TbAddress>) addressService.findListByUserId(userId);
+			return new ApiResult(200, "地址列表查询成功", listAddress);
+		}catch(Exception e){
+			return new ApiResult(201, "地址列表查询失败", null);
+		}
+		
 	}	
 	
 	/**
@@ -129,7 +138,7 @@ public class AddressController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestParam(required = true, value = "userId")String userId,
+	public Object add(@RequestParam(required = true, value = "userId")String userId,
 			          @RequestParam(required = true, value = "provinceId")String provinceId,
 			          @RequestParam(required = true, value = "cityId")String cityId,
 			          @RequestParam(required = true, value = "townId")String townId,
@@ -149,10 +158,10 @@ public class AddressController {
 			tbAddress.setAlias(alias);
 			tbAddress.setCreateDate(new Date());
 			addressService.add(tbAddress);
-			return new Result(true, "增加成功");
+			return new ApiResult(200, "地址新增成功", "");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(false, "增加失败");
+			return new ApiResult(201, "地址新增失败", "");
 		}
 	}
 	

@@ -116,13 +116,12 @@ public class ContentController {
 	
 	/**
 	 * 返回全部列表
-	 * 
+	 * userId
 	 * @return
 	 */
 	@RequestMapping("/getContentList")
-	public ApiResult findPage(@RequestParam(required = true, defaultValue = "0", value = "page") int page,
-			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
-			@PathVariable TbContent tbContent) {
+	public ApiResult findPage(int page,int rows,
+			@RequestBody TbContent tbContent) {
 		if(TextUtils.isBlank(tbContent.getUserId())){
 			return new ApiResult(101,"用户id为空", null);
 		}

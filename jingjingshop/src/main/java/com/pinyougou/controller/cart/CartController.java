@@ -1,122 +1,87 @@
 package com.pinyougou.controller.cart;
 
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
 import com.pinyougou.common.ApiResult;
-import com.pinyougou.pojo.TbGoodsCart;
-import com.pinyougou.pojo.group.Cart;
+import com.pinyougou.pojo.TbShopCart;
 import com.pinyougou.service.cart.CartService;
 
-import entity.PageResult;
-import entity.Result;
-import util.ProjectCodeBook;
-import util.TextUtils;
+import util.IdWorker;
 
+/**
+ * controller
+ * @author yue
+ *
+ */
 @RestController
 @RequestMapping("/cart")
 public class CartController {
-
+    
 	@Autowired
 	private CartService cartService;
 	
-	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
-	private HttpServletResponse response;
-	
-	@RequestMapping("/findCartList")
-	public List<Cart> findCartList(){
-		//当前登录人账号
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println("当前登录人："+username);
-		
-		String cartListString = util.CookieUtil.getCookieValue(request, "cartList", "UTF-8");
-		if(cartListString==null || cartListString.equals("")){
-			cartListString="[]";
-		}
-		List<Cart> cartList_cookie = JSON.parseArray(cartListString, Cart.class);
-		
-		if(username.equals("anonymousUser")){//如果未登录
-			//从cookie中提取购物车
-			System.out.println("从cookie中提取购物车");
-						
-			return cartList_cookie;
-			
-		}else{//如果已登录
-			//获取redis购物车
-			List<Cart> cartList_redis = cartService.findCartListFromRedis(username);
-			if(cartList_cookie.size()>0){//判断当本地购物车中存在数据
-				//得到合并后的购物车
-				List<Cart> cartList = cartService.mergeCartList(cartList_cookie, cartList_redis);
-				//将合并后的购物车存入redis 
-				cartService.saveCartListToRedis(username, cartList);
-				//本地购物车清除
-				util.CookieUtil.deleteCookie(request, response, "cartList");
-				System.out.println("执行了合并购物车的逻辑");
-				return cartList;
-			}						
-			return cartList_redis;
-		}
-				
-	}
-	
-	@RequestMapping("/addGoodsToCartList")
-//	@CrossOrigin(origins="http://localhost:9105")
-	public Result addGoodsToCartList(Long itemId,Integer num){
-		
-		//response.setHeader("Access-Control-Allow-Origin", "http://localhost:9105");//可以访问的域(当此方法不需要操作cookie)
-		//response.setHeader("Access-Control-Allow-Credentials", "true");//如果操作cookie，必须加上这句话
-		//当前登录人账号
-		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println("当前登录人："+name);
-		try {
-			//提取购物车
-			List<Cart> cartList = findCartList();
-			//调用服务方法操作购物车
-			cartList = cartService.addGoodsToCartList(cartList, itemId, num);
-			
-			if(name.equals("anonymousUser")){//如果未登录
-				//将新的购物车存入cookie
-				String cartListString = JSON.toJSONString(cartList);
-				util.CookieUtil.setCookie(request, response, "cartList", cartListString, 3600*24, "UTF-8");
-				System.out.println("向cookie存储购物车");		
-			}else{//如果登录				
-				cartService.saveCartListToRedis(name, cartList);				
-			}
-			return new Result(true, "存入购物车成功");
-		} catch (Exception e) {
+	@RequestMapping("/add")
+	public Object add(@RequestParam(value="userId",required=false)String userId,
+			@RequestParam(value="itemId",required=false)String itemId,
+			@RequestParam(value="sellerId",required=false)String sellerId,
+			@RequestParam(value="image",required=false)String image,
+			@RequestParam(value="title",required=false)String title,
+			@RequestParam(value="marketCost",required=false)String marketCost,
+	        @RequestParam(value="costPirce",required=false)String costPirce,
+            @RequestParam(value="num",required=false)String num,
+            @RequestParam(value="postFee",required=false)String postFee){
+		try{
+			TbShopCart tbShopCart = new TbShopCart();
+			tbShopCart.setUserId(userId);
+			tbShopCart.setItemId(Long.parseLong(itemId));
+			tbShopCart.setSellerId(sellerId);
+			tbShopCart.setImage(image);
+			tbShopCart.setTitle(title);
+			tbShopCart.setMarketCost(Long.parseLong(marketCost));
+			tbShopCart.setCostPirce(Long.parseLong(costPirce));
+			tbShopCart.setNum(Integer.parseInt(num));
+			tbShopCart.setPostFee(Long.parseLong(postFee));
+			cartService.add(tbShopCart);
+			return new ApiResult(200, "购物车添加成功!", "");
+		}catch(Exception e){
 			e.printStackTrace();
-			return new Result(false, "存入购物车失败");
+			return new ApiResult(201, "购物车添加失败!", "");
 		}
 	}
 	
-	
-	
-	
-	
-	@RequestMapping("/getCartList")
-	public ApiResult getCartList(@RequestParam(required = false, defaultValue = "0", value = "page") int page,
-			@RequestParam(required = false, defaultValue = "10", value = "rows") int rows,
-			@RequestParam(required = true, defaultValue = "userId", value = "userId") String userId) {
-		if (TextUtils.isBlank(userId) || !ProjectCodeBook.isNumeric(userId)) {
-			return new ApiResult(101, "用户id为空", null);
+	@RequestMapping("/list")
+	public Object listCart(@RequestParam(value="userId",required=true)String userId){
+		try{
+			Map<String,Object> data = new HashMap<String,Object>();
+			List<TbShopCart> listCart = cartService.listTbShopCart(userId);
+			data.put("listCart", listCart);
+			return new ApiResult(200, "查询成功！", data);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ApiResult(201, "查询失败！", "");
 		}
-		TbGoodsCart tbGoodsCart = new TbGoodsCart();
-		tbGoodsCart.setUserWxId(Integer.valueOf(userId));
-		PageResult result = cartService.findPage(tbGoodsCart, page, rows);
-		return new ApiResult(200, "获取成功", result);
 	}
 	
+	@RequestMapping("/clearCart")
+	public Object clearCart(@RequestParam(value="userId",required=true)String userId,
+			@RequestParam(value="userType",required=true)String userType,
+			@RequestParam(value="isClearFlag",required=false)String isClearFlag,
+			@RequestParam(value="cartIds",required=true)String[] cartIds){
+		try{
+			for(String cartId:cartIds){
+				cartService.delTbShopCart(Long.parseLong(cartId));
+			}
+			return new ApiResult(200, "已清空购物车！", "");
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ApiResult(201, "购物车清空失败！", "");
+		}
+	}
 }

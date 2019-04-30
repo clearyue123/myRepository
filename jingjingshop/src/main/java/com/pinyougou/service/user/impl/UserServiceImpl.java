@@ -117,8 +117,8 @@ public class UserServiceImpl implements UserService {
             if (user.getStatus() != null && user.getStatus().length() > 0) {
                 criteria.andStatusLike("%" + user.getStatus() + "%");
             }
-            if (user.getHead_pic() != null && user.getHead_pic().length() > 0) {
-                criteria.andHeadPicLike("%" + user.getHead_pic() + "%");
+            if (user.getHeadPic() != null && user.getHeadPic().length() > 0) {
+                criteria.andHeadPicLike("%" + user.getHeadPic() + "%");
             }
             if (user.getQq() != null && user.getQq().length() > 0) {
                 criteria.andQqLike("%" + user.getQq() + "%");
@@ -140,6 +140,22 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+	public TbUser firstInfo(TbUser user) {
+		TbUserExample example = new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		if (user != null) {
+			if (user.getId() != null) {
+				criteria.andIdEqualTo(user.getId());
+			}
+		}
 
+		Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(example);
+		if(page.size()>0){
+			return page.get(0);
+		}else{
+			return null;
+		}
+	}
 
 }

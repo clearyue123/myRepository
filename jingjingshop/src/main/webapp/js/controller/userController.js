@@ -27,4 +27,11 @@ app.controller("userController",function($scope,$controller,$http,userService){
 		})
 	}
 	
+	// 查询一个:
+	$scope.findById = function(id){
+		userService.findById(id).success(function(response){
+			$scope.entity = response;
+		});
+	}
+	
 });

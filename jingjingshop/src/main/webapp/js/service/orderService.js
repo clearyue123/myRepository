@@ -11,9 +11,12 @@ app.service("orderService",function($http){
 		return $http.post("../order/save.do",entity);
 	}
 	
-	//新增功能
-	this.update = function(){
+	//更新功能
+	this.update = function(entity){
 		return $http.post("../order/update.do",entity);
 	}
 	
+	this.findById = function(id){
+		return $http.post("../order/findOne.do?id="+id);
+	}
 });
