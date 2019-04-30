@@ -44,20 +44,10 @@ public class TbUser implements Serializable{
 
     private Integer experienceValue;
 
-    private Date birthday;
+    private String birthday;
 
     private Date lastLoginTime;
     
-    private String birthdayStr;
-    
-    public String getBirthdayStr() {
-		return birthdayStr;
-	}
-
-	public void setBirthdayStr(String birthdayStr) {
-		this.birthdayStr = birthdayStr;
-	}
-
 	public Long getId() {
         return id;
     }
@@ -187,7 +177,7 @@ public class TbUser implements Serializable{
     }
 
     public String getSex() {
-        return sex;
+    	return sex;
     }
 
     public void setSex(String sex) {
@@ -218,14 +208,6 @@ public class TbUser implements Serializable{
         this.experienceValue = experienceValue;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public Date getLastLoginTime() {
         return lastLoginTime;
     }
@@ -233,4 +215,13 @@ public class TbUser implements Serializable{
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+    
 }

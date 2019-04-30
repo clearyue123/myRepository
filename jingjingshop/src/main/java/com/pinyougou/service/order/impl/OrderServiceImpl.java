@@ -21,7 +21,6 @@ import com.pinyougou.pojo.TbPayLog;
 import com.pinyougou.service.order.OrderService;
 
 import entity.PageResult;
-import util.IdWorker;
 
 /**
  * 服务实现层
@@ -159,8 +158,27 @@ public class OrderServiceImpl implements OrderService {
 			}
 	
 		}
-		
-		Page<TbOrder> page= (Page<TbOrder>)orderMapper.selectByExample(example);		
+		List<TbOrder> orderList = orderMapper.selectByExample(example);
+		for(int i=0;i<orderList.size();i++){
+			TbOrder tbOrder = orderList.get(i);
+			String status = tbOrder.getStatus();
+			if("1".equals(status)){
+				tbOrder.setStatus("未付款");
+			}else if("2".equals(status)){
+				tbOrder.setStatus("已付款");
+			}else if("3".equals(status)){
+				tbOrder.setStatus("未发货");
+			}else if("4".equals(status)){
+				tbOrder.setStatus("已发货");
+			}else if("5".equals(status)){
+				tbOrder.setStatus("交易成功");
+			}else if("6".equals(status)){
+				tbOrder.setStatus("交易关闭");
+			}else{
+				tbOrder.setStatus("待评价");
+			}
+		}
+		Page<TbOrder> page= (Page<TbOrder>)	orderList;	
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 

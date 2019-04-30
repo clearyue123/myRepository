@@ -25,6 +25,13 @@
     <script type="text/javascript" src="../js/controller/baseController.js"></script>
     <script type="text/javascript" src="../js/controller/orderController.js"></script>
     <script type="text/javascript" src="../js/service/orderService.js"></script>
+    <script type="text/javascript">
+	    $('#editModal').modal().css({
+	        'margin-top': function () {
+	            return ($(this).height() * 1.5);
+	        }
+	    });
+    </script>
 </head>
 
 <body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="orderController">
@@ -123,12 +130,57 @@
 		<div class="modal-body">		
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
-		      		<td>品牌名称</td>
-		      		<td><input ng-model="entity.name" class="form-control" placeholder="品牌名称" >  </td>
+		      		<td>用户名</td>
+		      		<td><input ng-model="entity.userId" class="form-control" placeholder="品牌名称" >  </td>
 		      	</tr>		      	
 		      	<tr>
-		      		<td>首字母</td>
-		      		<td><input ng-model="entity.firstChar" class="form-control" placeholder="首字母">  </td>
+		      		<td>订单状态</td>
+		      		<td><input ng-model="entity.status" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>订单金额</td>
+		      		<td><input ng-model="entity.payment" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>支付类型</td>
+		      		<td><input ng-model="entity.paymentType" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>物流单号</td>
+		      		<td><input ng-model="entity.shippingCode" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td>用户留言</td>
+		      		<td><input ng-model="entity.buyerMessage" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>买家昵称</td>
+		      		<td><input ng-model="entity.buyerNick" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>是否已经评价</td>
+		      		<td><input ng-model="entity.buyerRate" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>收货地址</td>
+		      		<td><input ng-model="entity.receiverAreaName" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>收货人手机号</td>
+		      		<td><input ng-model="entity.receiverMobile" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>收货人</td>
+		      		<td><input ng-model="entity.receiver" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>订单商品数量</td>
+		      		<td><input ng-model="entity.itemNum" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>配送方式</td>
+		      		<td><input ng-model="entity.shippingType" class="form-control" placeholder="品牌名称" >  </td>
 		      	</tr>		      	
 			 </table>				
 		</div>
@@ -151,12 +203,57 @@
 		<div class="modal-body">		
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
-		      		<td>品牌名称</td>
-		      		<td><input ng-model="entity.name" class="form-control" placeholder="品牌名称" >  </td>
+		      		<td>用户名</td>
+		      		<td><input ng-model="entity.userId" class="form-control" placeholder="品牌名称" >  </td>
 		      	</tr>		      	
 		      	<tr>
-		      		<td>首字母</td>
-		      		<td><input ng-model="entity.firstChar" class="form-control" placeholder="首字母">  </td>
+		      		<td>订单状态</td>
+		      		<td><input ng-model="entity.status" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>订单金额</td>
+		      		<td><input ng-model="entity.payment" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>支付类型</td>
+		      		<td><input ng-model="entity.paymentType" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>物流单号</td>
+		      		<td><input ng-model="entity.shippingCode" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td>用户留言</td>
+		      		<td><input ng-model="entity.buyerMessage" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>买家昵称</td>
+		      		<td><input ng-model="entity.buyerNick" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>是否已经评价</td>
+		      		<td><input ng-model="entity.buyerRate" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>收货地址</td>
+		      		<td><input ng-model="entity.receiverAreaName" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>收货人手机号</td>
+		      		<td><input ng-model="entity.receiverMobile" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>收货人</td>
+		      		<td><input ng-model="entity.receiver" class="form-control" placeholder="品牌名称" >  </td>
+		      	</tr>		      	
+		      	<tr>
+		      		<td>订单商品数量</td>
+		      		<td><input ng-model="entity.itemNum" class="form-control" placeholder="首字母">  </td>
+		      	</tr>
+		      	<tr>
+		      		<td>配送方式</td>
+		      		<td><input ng-model="entity.shippingType" class="form-control" placeholder="品牌名称" >  </td>
 		      	</tr>		      	
 			 </table>				
 		</div>
@@ -176,19 +273,77 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">订单详情</h3>
 		</div>
-		<div class="modal-body">		
-			<table class="table table-bordered table-striped"  width="800px">
-		      	<tr>
-		      		<td>品牌名称</td>
-		      		<td><input ng-model="entity.name" class="form-control" placeholder="品牌名称" >  </td>
-		      	</tr>		      	
-		      	<tr>
-		      		<td>首字母</td>
-		      		<td><input ng-model="entity.firstChar" class="form-control" placeholder="首字母">  </td>
-		      	</tr>		      	
-			 </table>				
-		</div>
-		<div class="modal-footer">						
+					<div class="modal-body">
+						<table class="table table-bordered table-striped" width="800px">
+							<tr>
+								<td>用户名</td>
+								<td><input ng-model="entity.userId" class="form-control"
+									placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>订单状态</td>
+								<td><input ng-model="entity.status" class="form-control"
+									placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>订单金额</td>
+								<td><input ng-model="entity.payment" class="form-control"
+									placeholder="首字母"></td>
+							</tr>
+							<tr>
+								<td>支付类型</td>
+								<td><input ng-model="entity.paymentType"
+									class="form-control" placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>物流单号</td>
+								<td><input ng-model="entity.shippingCode"
+									class="form-control" placeholder="首字母"></td>
+							</tr>
+
+							<tr>
+								<td>用户留言</td>
+								<td><input ng-model="entity.buyerMessage"
+									class="form-control" placeholder="首字母"></td>
+							</tr>
+							<tr>
+								<td>买家昵称</td>
+								<td><input ng-model="entity.buyerNick" class="form-control"
+									placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>是否已经评价</td>
+								<td><input ng-model="entity.buyerRate" class="form-control"
+									placeholder="首字母"></td>
+							</tr>
+							<tr>
+								<td>收货地址</td>
+								<td><input ng-model="entity.receiverAreaName"
+									class="form-control" placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>收货人手机号</td>
+								<td><input ng-model="entity.receiverMobile"
+									class="form-control" placeholder="首字母"></td>
+							</tr>
+							<tr>
+								<td>收货人</td>
+								<td><input ng-model="entity.receiver" class="form-control"
+									placeholder="品牌名称"></td>
+							</tr>
+							<tr>
+								<td>订单商品数量</td>
+								<td><input ng-model="entity.itemNum" class="form-control"
+									placeholder="首字母"></td>
+							</tr>
+							<tr>
+								<td>配送方式</td>
+								<td><input ng-model="entity.shippingType"
+									class="form-control" placeholder="品牌名称"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">						
 			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>

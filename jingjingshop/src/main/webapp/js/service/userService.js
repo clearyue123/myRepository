@@ -6,7 +6,6 @@ app.service("userService",function($http){
 	}
 	
 	this.save = function(entity){
-		alert("save2...")
 		return $http.post("../user/add.do",entity);
 	}
 });

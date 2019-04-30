@@ -15,6 +15,7 @@ import com.pinyougou.pojo.TbUserExample.Criteria;
 import com.pinyougou.service.user.UserService;
 
 import entity.PageResult;
+import util.IdWorker;
 import util.TimeUtils;
 
 /**
@@ -36,7 +37,6 @@ public class UserServiceImpl implements UserService {
 		for(int i=0;i<listTbUser.size();i++){
 			TbUser tbUser = listTbUser.get(i);
 			tbUser.setSex(tbUser.getSex().equals("1")?"男":"女");
-			tbUser.setBirthdayStr(TimeUtils.getYearDay(tbUser.getBirthday().getTime()+""));
 		}
 		return listTbUser;
 	}
@@ -45,8 +45,13 @@ public class UserServiceImpl implements UserService {
 	 * 按分页查询
 	 */
 	public PageResult findPage(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);		
-		Page<TbUser> page=   (Page<TbUser>) userMapper.selectByExample(null);
+		PageHelper.startPage(pageNum, pageSize);
+		List<TbUser> listUser = userMapper.selectByExample(null);
+		for(int i=0;i<listUser.size();i++){
+			TbUser tbUser = listUser.get(i);
+			tbUser.setSex(tbUser.getSex().equals("1")?"男":"女");
+		}
+		Page<TbUser> page=   (Page<TbUser>) listUser;
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
@@ -54,10 +59,13 @@ public class UserServiceImpl implements UserService {
 	 * 增加
 	 */
 	public void add(TbUser user) {
+		IdWorker idWorker = new IdWorker();
+		Long id = idWorker.nextId();
+		user.setId(id);
 		user.setCreated(new Date());//用户注册时间
 		user.setUpdated(new Date());//修改时间
-		user.setSourceType("1");//注册来源		
-		//user.setPassword( DigestUtils.md5Hex(user.getPassword()));//密码加密
+		user.setSourceType("1");//注册来源	
+		user.setPassword( DigestUtils.md5Hex(user.getPassword()));//密码加密
 		userMapper.insert(user);		
 	}
 
@@ -95,7 +103,7 @@ public class UserServiceImpl implements UserService {
 		Criteria criteria = example.createCriteria();
 		
 		if(user!=null){			
-						if(user.getUsername()!=null && user.getUsername().length()>0){
+				if(user.getUsername()!=null && user.getUsername().length()>0){
 				criteria.andUsernameLike("%"+user.getUsername()+"%");
 			}
 			if(user.getPassword()!=null && user.getPassword().length()>0){
@@ -136,8 +144,16 @@ public class UserServiceImpl implements UserService {
 			}
 	
 		}
-		
-		Page<TbUser> page= (Page<TbUser>)userMapper.selectByExample(example);		
+		List<TbUser> listUser = userMapper.selectByExample(example);
+		for(int i=0;i<listUser.size();i++){
+			TbUser tbUser = listUser.get(i);
+			if(tbUser.getSex()!=null){
+				tbUser.setSex(tbUser.getSex().equals("1")?"男":"女");
+			}else{
+				tbUser.setSex("");
+			}
+		}
+		Page<TbUser> page=(Page<TbUser>) listUser;
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 

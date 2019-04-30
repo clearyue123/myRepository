@@ -14,8 +14,17 @@ app.controller("userController",function($scope,$controller,$http,userService){
 	}
 	
 	$scope.save=function(){
-		alert("save1...");
-		userService.save($scope.entity);
+		var object = userService.save($scope.entity);
+		object.success(function(response){
+			alert(response);
+			if(response.flag==true){
+				// 保存成功
+				alert(response.message);
+				$scope.reloadList();
+			}else{
+				alert(response.message);
+			}
+		})
 	}
 	
 });

@@ -1,5 +1,7 @@
 package com.pinyougou.controller.user;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,14 +51,18 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbUser user){
+	public Object add(@RequestBody TbUser user){
+		Map<String,Object> responseMap = new HashMap<String,Object>();
 		try {
-			System.out.println(user.getUsername());
 			userService.add(user);
-			return new Result(true, "增加成功");
+			responseMap.put("flag", true);
+			responseMap.put("message", "新增用户成功");
+			return responseMap;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(false, "增加失败");
+			responseMap.put("flag", false);
+			responseMap.put("message", "参数错误，用户新增失败");
+			return responseMap;
 		}
 	}
 	
