@@ -3,7 +3,7 @@ package com.pinyougou.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbUser implements Serializable{
+public class TbUser  extends  TbBase implements Serializable{
     private Long id;
 
     private String username;
@@ -26,7 +26,7 @@ public class TbUser implements Serializable{
 
     private String status;
 
-    private String headPic;
+    private String head_pic;
 
     private String qq;
 
@@ -48,6 +48,26 @@ public class TbUser implements Serializable{
 
     private Date lastLoginTime;
     
+    private String birthdayStr;
+
+
+    public String getHead_pic() {
+        return head_pic;
+    }
+
+    public void setHead_pic(String head_pic) {
+        this.head_pic = head_pic == null ? null : head_pic.trim();
+
+    }
+
+    public String getBirthdayStr() {
+		return birthdayStr;
+	}
+
+	public void setBirthdayStr(String birthdayStr) {
+		this.birthdayStr = birthdayStr;
+	}
+
 	public Long getId() {
         return id;
     }
@@ -136,13 +156,6 @@ public class TbUser implements Serializable{
         this.status = status == null ? null : status.trim();
     }
 
-    public String getHeadPic() {
-        return headPic;
-    }
-
-    public void setHeadPic(String headPic) {
-        this.headPic = headPic == null ? null : headPic.trim();
-    }
 
     public String getQq() {
         return qq;
@@ -177,7 +190,7 @@ public class TbUser implements Serializable{
     }
 
     public String getSex() {
-    	return sex;
+        return sex;
     }
 
     public void setSex(String sex) {
@@ -208,6 +221,15 @@ public class TbUser implements Serializable{
         this.experienceValue = experienceValue;
     }
 
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     public Date getLastLoginTime() {
         return lastLoginTime;
     }
@@ -216,12 +238,33 @@ public class TbUser implements Serializable{
         this.lastLoginTime = lastLoginTime;
     }
 
-	public String getBirthday() {
-		return birthday;
-	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-    
+    @Override
+    public String toString() {
+        return "TbUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", sourceType='" + sourceType + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", head_pic='" + head_pic + '\'' +
+                ", qq='" + qq + '\'' +
+                ", accountBalance=" + accountBalance +
+                ", isMobileCheck='" + isMobileCheck + '\'' +
+                ", isEmailCheck='" + isEmailCheck + '\'' +
+                ", sex='" + sex + '\'' +
+                ", userLevel=" + userLevel +
+                ", points=" + points +
+                ", experienceValue=" + experienceValue +
+                ", birthday=" + birthday +
+                ", lastLoginTime=" + lastLoginTime +
+                ", birthdayStr='" + birthdayStr + '\'' +
+                '}';
+    }
 }

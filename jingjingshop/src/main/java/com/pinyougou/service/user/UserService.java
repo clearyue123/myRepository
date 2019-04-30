@@ -2,8 +2,8 @@ package com.pinyougou.service.user;
 import java.util.List;
 
 import com.pinyougou.pojo.TbUser;
-
 import entity.PageResult;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -22,19 +22,19 @@ public interface UserService {
 	 * 返回分页列表
 	 * @return
 	 */
-	public PageResult findPage(int pageNum,int pageSize);
+	public PageResult findPage(int pageNum, int pageSize);
 	
 	
 	/**
 	 * 增加
 	*/
-	public void add(TbUser user);
+	public int add(TbUser user);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbUser user);
+	public int update(TbUser user);
 	
 
 	/**
@@ -49,7 +49,7 @@ public interface UserService {
 	 * 批量删除
 	 * @param ids
 	 */
-	public void delete(Long [] ids);
+	public void delete(Long[] ids);
 
 	/**
 	 * 分页
@@ -57,7 +57,7 @@ public interface UserService {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	public PageResult findPage(TbUser user, int pageNum,int pageSize);
+	public PageResult findPage(TbUser user, int pageNum, int pageSize);
 	
 	
 }
