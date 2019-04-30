@@ -50,7 +50,6 @@ public class UserController {
         try {
             if (user.getId()==null) {
                 userService.add(user);
-
                 return new ApiResult(200, "新增成功", user);
                 }
              userService.update(user);
