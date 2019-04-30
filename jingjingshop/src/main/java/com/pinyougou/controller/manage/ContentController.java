@@ -122,12 +122,8 @@ public class ContentController {
 	 * @return
 	 */
 	@RequestMapping("/getContentList")
-	public ApiResult findPage(int page,int rows,
-			@RequestBody TbContent tbContent) {
-		if(TextUtils.isBlank(tbContent.getUserId())){
-			return new ApiResult(101,"用户id为空", null);
-		}
-		PageResult pageResult = contentService.findContentPage(page, rows,tbContent);
+	public ApiResult getContentList(int page,int rows) {
+		PageResult pageResult = contentService.findPage(page, rows);
 		return new ApiResult(200,"获取成功", pageResult);
 	}
 }
