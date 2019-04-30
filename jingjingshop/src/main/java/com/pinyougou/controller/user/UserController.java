@@ -48,6 +48,7 @@ public class UserController {
     @RequestMapping("/userupdate")
     public ApiResult userupdate(@RequestBody TbUser user) {
         try {
+
             if (user.getId()==null) {
                 userService.add(user);
                 return new ApiResult(200, "新增成功", user);
