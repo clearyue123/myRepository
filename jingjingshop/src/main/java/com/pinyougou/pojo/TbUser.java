@@ -49,9 +49,18 @@ public class TbUser  extends  TbBase implements Serializable{
     private Date lastLoginTime;
     
     private String birthdayStr;
+    
+    private String openId;
 
+    public String getOpenId() {
+		return openId;
+	}
 
-    public String getHead_pic() {
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getHead_pic() {
         return head_pic;
     }
 

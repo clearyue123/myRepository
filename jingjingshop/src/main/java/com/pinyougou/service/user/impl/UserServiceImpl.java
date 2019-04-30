@@ -140,6 +140,22 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+	public TbUser firstInfo(TbUser user) {
+		TbUserExample example = new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		if (user != null) {
+			if (user.getId() != null) {
+				criteria.andIdEqualTo(user.getId());
+			}
+		}
 
+		Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(example);
+		if(page.size()>0){
+			return page.get(0);
+		}else{
+			return null;
+		}
+	}
 
 }

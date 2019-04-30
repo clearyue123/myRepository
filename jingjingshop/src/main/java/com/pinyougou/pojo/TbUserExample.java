@@ -374,6 +374,11 @@ public class TbUserExample {
             addCriterion("phone not between", value1, value2, "phone");
             return (Criteria) this;
         }
+        
+        public Criteria andOpenIdEqualTo(String value) {
+            addCriterion("open_id =", value, "open_id");
+            return (Criteria) this;
+        }
 
         public Criteria andEmailIsNull() {
             addCriterion("email is null");

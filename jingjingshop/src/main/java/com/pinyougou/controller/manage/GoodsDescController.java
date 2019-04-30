@@ -124,11 +124,20 @@ public class GoodsDescController {
 	 * @return
 	 */
 	@RequestMapping("/getGoodsDescList")
-	public ApiResult getGoodsDescList(@RequestBody 
-			@RequestParam(required = true, defaultValue = "0", value = "page") int page,
-			@RequestParam(required = true, defaultValue = "10", value = "rows") int rows,
-			@PathVariable TbGoodsDesc goodsDesc){
+	public ApiResult getGoodsDescList(int page,int rows){
+		TbGoodsDesc goodsDesc = new TbGoodsDesc();
 		PageResult result = goodsDescService.findPage(goodsDesc, page, rows);		
+		return new ApiResult(200,"获取成功",result);
+	}
+	
+	/**
+	 * 查询根据id获取商品详情  小程序
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/getGoodsDescDetails")
+	public ApiResult getGoodsDescDetails(Long id){
+		TbGoodsDesc result = goodsDescService.findOne(id);
 		return new ApiResult(200,"获取成功",result);
 	}
 }
