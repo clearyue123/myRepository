@@ -1,6 +1,7 @@
 package com.pinyougou.controller.manage;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import util.TextUtils;
 @RequestMapping("/content")
 public class ContentController {
 
+	@Autowired
 	private ContentService contentService;
 	
 	/**

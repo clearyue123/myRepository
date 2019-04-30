@@ -163,7 +163,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/getGoodsDetail")
-	public ApiResult getGoodsDetail(@RequestBody Long id) {
+	public ApiResult getGoodsDetail(Long id) {
 		Goods goods = goodsService.findOne(id);
 		return new ApiResult(200, "查询成功", goods);
 	}

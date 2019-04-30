@@ -86,29 +86,29 @@ public class UserLoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/bindwx", method = RequestMethod.POST)
-	public ApiResult bindWx(Long userId, String openId, String wxname, String headimg) {
+	public ApiResult bindWx(Long userId, String wxname, String headimg) {
 		if (TextUtils.isBlank(wxname)) {
 			return new ApiResult(101, "微信昵称不能为空", null);
 		}
 		if (TextUtils.isBlank(headimg)) {
 			return new ApiResult(101, "微信头像不能为空", null);
 		}
+		System.out.println(userId.longValue());
 		TbUser user = new TbUser();
 		user.setNickName(wxname);
 		user.setHeadPic(headimg);
-		user.setOpenId(openId);
 		TbUser result = userService.findOne(userId.longValue());
 		if (result != null) {
 			user.setId(result.getId());
 			userService.update(user);
-			TbUser tbUser = userService.firstInfo(user);
+			TbUser tbUser = userService.findOne(userId);
 			if (tbUser == null) {
 				return new ApiResult(101, "未知错误，请联系管理员", tbUser);
 			}
 			return new ApiResult(200, "绑定成功", tbUser);
 		} else {
 			userService.add(user);
-			TbUser tbUser = userService.firstInfo(user);
+			TbUser tbUser = userService.findOne(userId);
 			if (tbUser == null) {
 				return new ApiResult(101, "未知错误，请联系管理员", tbUser);
 			}
