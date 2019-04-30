@@ -26,7 +26,7 @@ public class TbUser  extends  TbBase implements Serializable{
 
     private String status;
 
-    private String head_pic;
+    private String headPic;
 
     private String qq;
 
@@ -60,16 +60,15 @@ public class TbUser  extends  TbBase implements Serializable{
 		this.openId = openId;
 	}
 
-	public String getHead_pic() {
-        return head_pic;
-    }
+    public String getHeadPic() {
+		return headPic;
+	}
 
-    public void setHead_pic(String head_pic) {
-        this.head_pic = head_pic == null ? null : head_pic.trim();
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
+	}
 
-    }
-
-    public String getBirthdayStr() {
+	public String getBirthdayStr() {
 		return birthdayStr;
 	}
 
@@ -262,7 +261,7 @@ public class TbUser  extends  TbBase implements Serializable{
                 ", nickName='" + nickName + '\'' +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
-                ", head_pic='" + head_pic + '\'' +
+                ", head_pic='" + headPic + '\'' +
                 ", qq='" + qq + '\'' +
                 ", accountBalance=" + accountBalance +
                 ", isMobileCheck='" + isMobileCheck + '\'' +

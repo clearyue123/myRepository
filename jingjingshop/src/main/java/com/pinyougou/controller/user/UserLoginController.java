@@ -3,17 +3,16 @@ package com.pinyougou.controller.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.pinyougou.common.ApiResult;
 import com.pinyougou.pojo.TbUser;
-import com.pinyougou.pojo.TbUserWx;
 import com.pinyougou.service.user.UserService;
 
 import util.HttpUtils;
@@ -22,6 +21,8 @@ import util.TextUtils;
 @RestController
 @RequestMapping("/login")
 public class UserLoginController {
+	
+	@Autowired
 	private UserService userService;
 
 	@RequestMapping("/name")
@@ -92,10 +93,9 @@ public class UserLoginController {
 		if (TextUtils.isBlank(headimg)) {
 			return new ApiResult(101, "微信头像不能为空", null);
 		}
-		System.out.println(userId.longValue());
 		TbUser user = new TbUser();
 		user.setNickName(wxname);
-		user.setHead_pic(headimg);
+		user.setHeadPic(headimg);
 		user.setOpenId(openId);
 		TbUser result = userService.findOne(userId.longValue());
 		if (result != null) {

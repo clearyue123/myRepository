@@ -117,8 +117,8 @@ public class UserServiceImpl implements UserService {
             if (user.getStatus() != null && user.getStatus().length() > 0) {
                 criteria.andStatusLike("%" + user.getStatus() + "%");
             }
-            if (user.getHead_pic() != null && user.getHead_pic().length() > 0) {
-                criteria.andHeadPicLike("%" + user.getHead_pic() + "%");
+            if (user.getHeadPic() != null && user.getHeadPic().length() > 0) {
+                criteria.andHeadPicLike("%" + user.getHeadPic() + "%");
             }
             if (user.getQq() != null && user.getQq().length() > 0) {
                 criteria.andQqLike("%" + user.getQq() + "%");

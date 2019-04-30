@@ -38,7 +38,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#addModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>           
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -120,8 +120,8 @@
 		      	<tr>
 		      		<td>性别</td>
 		      		<td class="form-control">
-						<input type="radio"  name="a" ng-value="1" ng-model="entity.sex">男 
-                        <input type="radio"  name="a" ng-value="0" ng-model="entity.sex">女
+						<input type="radio"  name="a" ng-value="1" ng-checked="entity.sex==1" ng-model="entity.sex">男 
+                        <input type="radio"  name="a" ng-value="0" ng-checked="entity.sex==0" ng-model="entity.sex">女
                     </td>
 		      	</tr>
 		      	<tr>
@@ -166,7 +166,10 @@
 		      	</tr>
 		      	<tr>
 		      		<td>性别</td>
-		      		<td><input ng-model="entity.sex" class="form-control" placeholder="性别" >  </td>
+		      		<td class="form-control">
+						<input type="radio"  name="a" ng-value="1" ng-checked="true" ng-model="entity.sex">男 
+                        <input type="radio"  name="a" ng-value="0" ng-model="entity.sex">女
+                    </td>
 		      	</tr>
 		      	<tr>
 		      		<td>邮箱</td>
