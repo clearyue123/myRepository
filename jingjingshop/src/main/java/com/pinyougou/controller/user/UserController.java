@@ -36,26 +36,7 @@ public class UserController {
     /*----------------分界线/-------------------*/
 
 
-    /**
-     * 增加
-     *
-     * @param
-     * @return
-     */
-    @RequestMapping("/useradd")
-    public ApiResult useradd(@RequestBody TbUser user) {
-        try {
-            if (user.getId()==null) {
-                return new ApiResult(00005, "用户id为空", null);
-            }
-            userService.add(user);
-            return new ApiResult(200, "新增成功", user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ApiResult(00002, "新增失败，id为唯一键不可重复", user);
-        }
 
-    }
 
 
     /**
@@ -67,15 +48,17 @@ public class UserController {
     @RequestMapping("/userupdate")
     public ApiResult userupdate(@RequestBody TbUser user) {
         try {
+            System.out.println(user);
             if (user.getId()==null) {
-                    return new ApiResult(00005, "用户id为空", null);
+                userService.add(user);
+                return new ApiResult(200, "新增成功", user);
                 }
-            userService.update(user);
-                return new ApiResult(200, "获取成功", user);
+             userService.update(user);
+                return new ApiResult(200, "编辑成功", user);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ApiResult(00004, "获取失败", user);
+        return new ApiResult(00004, "操作失败", user);
     }
 
 
