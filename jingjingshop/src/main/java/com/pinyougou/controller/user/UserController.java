@@ -52,7 +52,7 @@ public class UserController {
             return new ApiResult(00001, "新增成功", user);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ApiResult(00002, "新增失败，username和id为唯一键不可重复", user);
+            return new ApiResult(00002, "新增失败，id为唯一键不可重复", user);
         }
 
     }
