@@ -49,7 +49,7 @@ public class UserController {
                 return new ApiResult(00005, "用户id为空", null);
             }
             userService.add(user);
-            return new ApiResult(00001, "新增成功", user);
+            return new ApiResult(200, "新增成功", user);
         } catch (Exception e) {
             e.printStackTrace();
             return new ApiResult(00002, "新增失败，id为唯一键不可重复", user);
@@ -71,7 +71,7 @@ public class UserController {
                     return new ApiResult(00005, "用户id为空", null);
                 }
             userService.update(user);
-                return new ApiResult(00003, "获取成功", user);
+                return new ApiResult(200, "获取成功", user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,7 +89,7 @@ public class UserController {
     public ApiResult userfind(Long id) {
         TbUser users = userService.findOne(id);
         if (users != null) {
-            return new ApiResult(00006, "获取成功", users);
+            return new ApiResult(200, "获取成功", users);
         }
         return new ApiResult(00005, "无此人信息", users);
     }
