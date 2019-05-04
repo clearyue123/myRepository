@@ -26,7 +26,7 @@
 		<result column="points" property="points" jdbcType="INTEGER" />
 		<result column="experience_value" property="experienceValue"
 			jdbcType="INTEGER" />
-		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="birthday" property="birthday"/>
 		<result column="last_login_time" property="lastLoginTime"
 			jdbcType="TIMESTAMP" />
 		<result column="open_id" property="openId"
@@ -95,14 +95,6 @@
 			</foreach>
 		</where>
 	</sql>
-
-
-
-
-
-
-
-	<!-- ;分界线-/; -->
 
 	<sql id="Base_Column_List">
 		id, username, phone, name,
@@ -199,10 +191,9 @@
 
 
 	<insert id="insert" parameterType="com.pinyougou.pojo.TbUser">
-		insert into tb_user (username, name, phone, head_pic,birthday,open_id
+		insert into tb_user (username,password,name,phone,sex,email,nick_name,head_pic,wx_code,birthday,open_id
 		)
-		values (#{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-		#{phone,jdbcType=VARCHAR}, #{headPic}, #{birthday},#{openId})
+		values (#{username},#{password},#{name},#{phone},#{sex},#{email},#{nickName},#{wxCode},#{headPic}, #{birthday},#{openId})
 	</insert>
 
 

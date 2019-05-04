@@ -1,15 +1,11 @@
 package com.pinyougou.controller.user;
 
-import java.util.Date;
 import java.util.List;
 
 import com.pinyougou.common.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pinyougou.pojo.TbUser;
@@ -31,13 +27,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-
-    /*----------------分界线/-------------------*/
-
-
-
-
 
     /**
      * 修改
@@ -75,15 +64,6 @@ public class UserController {
         }
         return new ApiResult(00005, "无此人信息", users);
     }
-
-
-
-
-
-
-
-    /*----------------/分界线-------------------*/
-
 
     /**
      * 返回全部列表

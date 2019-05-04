@@ -1,9 +1,7 @@
 package com.pinyougou.service.user.impl;
 
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +53,7 @@ public class UserServiceImpl implements UserService {
      * 增加
      */
     public int add(TbUser user) {
+    	user.setPassword(user.getPassword());
         return userMapper.insert(user);
     }
 
@@ -120,8 +119,8 @@ public class UserServiceImpl implements UserService {
             if (user.getHeadPic() != null && user.getHeadPic().length() > 0) {
                 criteria.andHeadPicLike("%" + user.getHeadPic() + "%");
             }
-            if (user.getQq() != null && user.getQq().length() > 0) {
-                criteria.andQqLike("%" + user.getQq() + "%");
+            if (user.getWxCode()!= null && user.getWxCode().length() > 0) {
+                criteria.andQqLike("%" + user.getWxCode() + "%");
             }
             if (user.getIsMobileCheck() != null && user.getIsMobileCheck().length() > 0) {
                 criteria.andIsMobileCheckLike("%" + user.getIsMobileCheck() + "%");

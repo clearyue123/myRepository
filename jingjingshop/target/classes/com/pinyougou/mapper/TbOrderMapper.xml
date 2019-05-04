@@ -553,7 +553,10 @@
 		LEFT JOIN tb_item t2 ON t1.item_id = t2.id
 		WHERE
 			t.user_id = #{USERID}
-		AND t.`status` = #{STATUS}
+		<if test="status!=null">
+		   AND t.`status` = #{STATUS}
+		</if>
+		
   </select>
   
   <select id="showOrderDetail" parameterType="java.util.Map" resultType="java.util.Map">

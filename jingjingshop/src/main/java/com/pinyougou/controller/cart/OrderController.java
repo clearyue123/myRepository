@@ -132,13 +132,13 @@ public class OrderController {
 	
 	/**
 	 * 小程序接口  订单列表查询
-	 * @param userId
-	 * @param status
+	 * @param userId 用户id
+	 * @param status 订单状态
 	 * @return
 	 */
 	@RequestMapping("/ordersList")
 	public Object OrdersList(@RequestParam(required = true, value = "userId")String userId,
-			                  @RequestParam(required = true, value = "status")String status){
+			                 @RequestParam(required = false, value = "status")String status){
 		try{
 			List<Map<String, Object>> orderList = orderService.orderList(userId, status);
 			return new ApiResult(200, "订单列表查询成功", orderList);
@@ -151,8 +151,8 @@ public class OrderController {
 	
 	/**
 	 * 小程序接口 订单删除
-	 * @param orderId
-	 * @param userId
+	 * @param orderId 订单id
+	 * @param userId 用户id
 	 * @return
 	 */
 	@RequestMapping("/delOrder")
@@ -169,10 +169,10 @@ public class OrderController {
 	
 	/**
 	 * 小程序接口 订单详情
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param status
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param status 订单状态
 	 * @return
 	 */
 	@RequestMapping("/showOrderDetail")
@@ -202,10 +202,10 @@ public class OrderController {
 	 *   0:取消订单
 	 *   1:提醒发货
 	 *   2:已收货
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param operateFlag
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param operateFlag 订单操作
 	 * @return
 	 */
 	@RequestMapping("/oprateOrder")
@@ -235,10 +235,10 @@ public class OrderController {
 	/**
 	 * 小程序接口 支付成功
 	 * 支付成功后修改订单状态
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param message
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param message 用户留言
 	 * @return
 	 */
 	@RequestMapping("/payOrder")
