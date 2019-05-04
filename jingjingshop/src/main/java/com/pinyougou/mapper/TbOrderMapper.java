@@ -31,6 +31,8 @@ public interface TbOrderMapper {
 
     int updateByPrimaryKey(TbOrder record);
     
+    List<Map<String,Object>> selectItemsByOrderId(Long orderId);
+    
     List<Map<String,Object>> selectListOrder(Map<String,Object> paramMap);
     
     Map<String,Object> showOrderDetail(Map<String,Object> paramMap);

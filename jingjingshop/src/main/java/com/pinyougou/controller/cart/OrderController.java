@@ -140,8 +140,13 @@ public class OrderController {
 	public Object OrdersList(@RequestParam(required = true, value = "userId")String userId,
 			                 @RequestParam(required = false, value = "status")String status){
 		try{
-			List<Map<String, Object>> orderList = orderService.orderList(userId, status);
-			return new ApiResult(200, "订单列表查询成功", orderList);
+			List<Map<String,Object>> orderMapList = orderService.orderList(userId, status);
+			for(Map<String,Object> orderMap:orderMapList){
+				Long orderId = (Long)orderMap.get("order_id");
+				List<Map<String, Object>> itemMapList = orderService.selectItemsByOrderId(orderId);
+				orderMap.put("itemMap", itemMapList);
+			}
+			return new ApiResult(200, "订单列表查询成功", orderMapList);
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ApiResult(201, "订单列表查询失败", null);

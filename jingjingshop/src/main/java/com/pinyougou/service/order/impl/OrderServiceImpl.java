@@ -207,8 +207,8 @@ public class OrderServiceImpl implements OrderService {
 			Map<String,Object> paramMap = new HashMap<>();
 			paramMap.put("USERID", userId);
 			paramMap.put("STATUS", status);
-			List<Map<String, Object>> orderList = orderMapper.selectListOrder(paramMap);
-			return orderList;
+			List<Map<String, Object>> orderMapList = orderMapper.selectListOrder(paramMap);
+			return orderMapList;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -240,6 +240,26 @@ public class OrderServiceImpl implements OrderService {
 			orderMapper.updateStatusById(paramMap);
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> selectItemsByOrderId(Long orderId) {
+		try{
+			return orderMapper.selectItemsByOrderId(orderId);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> itemList(Long orderId) {
+		try{
+			return orderMapper.selectItemsByOrderId(orderId);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
