@@ -1,15 +1,11 @@
 package com.pinyougou.controller.user;
 
-import java.util.Date;
 import java.util.List;
 
 import com.pinyougou.common.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pinyougou.pojo.TbUser;
@@ -18,12 +14,9 @@ import com.pinyougou.service.user.UserService;
 import entity.PageResult;
 import entity.Result;
 import util.PhoneFormatCheckUtils;
-import util.TextUtils;
 
 /**
- * controller
- *
- * @author Administrator
+ * 用户管理 controller
  */
 @RestController
 @RequestMapping("/user")
@@ -32,16 +25,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    /*----------------分界线/-------------------*/
-
-
-
-
-
     /**
      * 修改
-     *
      * @param user
      * @return
      */
@@ -76,15 +61,6 @@ public class UserController {
         return new ApiResult(00005, "无此人信息", users);
     }
 
-
-
-
-
-
-
-    /*----------------/分界线-------------------*/
-
-
     /**
      * 返回全部列表
      *
@@ -98,7 +74,6 @@ public class UserController {
 
     /**
      * 返回全部列表
-     *
      * @return
      */
     @RequestMapping("/findPage")
@@ -108,7 +83,6 @@ public class UserController {
 
     /**
      * 增加
-     *
      * @param user
      * @return
      */

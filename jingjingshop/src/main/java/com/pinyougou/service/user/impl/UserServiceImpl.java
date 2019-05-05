@@ -1,14 +1,13 @@
 package com.pinyougou.service.user.impl;
 
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.TbUserMapper;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.pojo.TbUserExample;
@@ -48,6 +47,7 @@ public class UserServiceImpl implements UserService {
     public PageResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(null);
+        System.out.println(page);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
      * 增加
      */
     public int add(TbUser user) {
+    	user.setPassword(user.getPassword());
         return userMapper.insert(user);
     }
 
@@ -120,8 +121,8 @@ public class UserServiceImpl implements UserService {
             if (user.getHeadPic() != null && user.getHeadPic().length() > 0) {
                 criteria.andHeadPicLike("%" + user.getHeadPic() + "%");
             }
-            if (user.getQq() != null && user.getQq().length() > 0) {
-                criteria.andQqLike("%" + user.getQq() + "%");
+            if (user.getWxCode()!= null && user.getWxCode().length() > 0) {
+                criteria.andQqLike("%" + user.getWxCode() + "%");
             }
             if (user.getIsMobileCheck() != null && user.getIsMobileCheck().length() > 0) {
                 criteria.andIsMobileCheckLike("%" + user.getIsMobileCheck() + "%");
@@ -134,28 +135,16 @@ public class UserServiceImpl implements UserService {
             }
 
         }
-
-        Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(example);
-        return new PageResult(page.getTotal(), page.getResult());
+        List<TbUser> userList = userMapper.selectByExample(example);
+        PageInfo<TbUser> page = new PageInfo<>(userList);
+        return new PageResult(page.getTotal(), page.getList());
     }
 
 
     @Override
 	public TbUser firstInfo(TbUser user) {
-		TbUserExample example = new TbUserExample();
-		Criteria criteria = example.createCriteria();
-		if (user != null) {
-			if (user.getId() != null) {
-				criteria.andIdEqualTo(user.getId());
-			}
-		}
-
-		Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(example);
-		if(page.size()>0){
-			return page.get(0);
-		}else{
-			return null;
-		}
+		TbUser tbUser = userMapper.selectByOpenId(user);
+		return tbUser;
 	}
 
 }

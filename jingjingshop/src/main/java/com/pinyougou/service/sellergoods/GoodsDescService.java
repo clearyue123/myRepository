@@ -1,5 +1,6 @@
 package com.pinyougou.service.sellergoods;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.TbGoodsDesc;
 
@@ -58,5 +59,19 @@ public interface GoodsDescService {
 	 * @return
 	 */
 	public PageResult findPage(TbGoodsDesc goodsDesc, int pageNum,int pageSize);
+
+    /**
+     * 商品id查规格数据
+     * @param parseLong
+     * @return
+     */
+	public List<Map<String, Object>> findSpeListByGoodsId(long goodsId);
+
+    /**
+     * 商品详情信息
+     * @param parseLong
+     * @return
+     */
+	public Map<String, Object> showGoodsDetail(long goodsId);
 	
 }

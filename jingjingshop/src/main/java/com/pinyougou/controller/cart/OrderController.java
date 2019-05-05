@@ -125,23 +125,28 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbOrder order, int page, int rows  ){
+	public PageResult search(@RequestBody(required = false) TbOrder order, int page, int rows  ){
 		return orderService.findPage(order, page, rows);		
 	}
 	
 	
 	/**
 	 * 小程序接口  订单列表查询
-	 * @param userId
-	 * @param status
+	 * @param userId 用户id
+	 * @param status 订单状态
 	 * @return
 	 */
 	@RequestMapping("/ordersList")
 	public Object OrdersList(@RequestParam(required = true, value = "userId")String userId,
-			                  @RequestParam(required = true, value = "status")String status){
+			                 @RequestParam(required = false, value = "status")String status){
 		try{
-			List<Map<String, Object>> orderList = orderService.orderList(userId, status);
-			return new ApiResult(200, "订单列表查询成功", orderList);
+			List<Map<String,Object>> orderMapList = orderService.orderList(userId, status);
+			for(Map<String,Object> orderMap:orderMapList){
+				Long orderId = (Long)orderMap.get("order_id");
+				List<Map<String, Object>> itemMapList = orderService.selectItemsByOrderId(orderId);
+				orderMap.put("itemMap", itemMapList);
+			}
+			return new ApiResult(200, "订单列表查询成功", orderMapList);
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ApiResult(201, "订单列表查询失败", null);
@@ -151,8 +156,8 @@ public class OrderController {
 	
 	/**
 	 * 小程序接口 订单删除
-	 * @param orderId
-	 * @param userId
+	 * @param orderId 订单id
+	 * @param userId 用户id
 	 * @return
 	 */
 	@RequestMapping("/delOrder")
@@ -169,26 +174,26 @@ public class OrderController {
 	
 	/**
 	 * 小程序接口 订单详情
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param status
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param status 订单状态
 	 * @return
 	 */
 	@RequestMapping("/showOrderDetail")
 	public Object showOrderDetail(
 			          @RequestParam(required=true,value="userId")String userId,
-			          @RequestParam(required=true,value="userType")String userType,
-			          @RequestParam(required=true,value="orderId")String orderId,
-			          @RequestParam(required=true,value="status")String status
+			          @RequestParam(required=false,value="userType")String userType,
+			          @RequestParam(required=true,value="orderId")String orderId
 			          ){
 		try{
 			Map<String,Object> paramMap = new HashMap<>();
-			paramMap.put("userId", userId);
-			paramMap.put("userType", userType);
-			paramMap.put("orderId", orderId);
-			paramMap.put("status", status);
+			paramMap.put("USERID", userId);
+			paramMap.put("USERTYPE", userType);
+			paramMap.put("ORDERID", orderId);
 			Map<String, Object> orderDetailMap = orderService.selectOrderDetail(paramMap);
+			List<Map<String, Object>> itemMapList = orderService.selectItemsByOrderId(Long.parseLong(orderId));
+			orderDetailMap.put("itemMapList", itemMapList);
 			return new ApiResult(200, "查询成功", orderDetailMap);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -202,16 +207,16 @@ public class OrderController {
 	 *   0:取消订单
 	 *   1:提醒发货
 	 *   2:已收货
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param operateFlag
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param operateFlag 订单操作
 	 * @return
 	 */
 	@RequestMapping("/oprateOrder")
 	public Object oprateOrder(
 			  @RequestParam(required=true,value="userId")String userId,
-	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=false,value="userType")String userType,
 	          @RequestParam(required=true,value="orderId")String orderId,
 	          @RequestParam(required=true,value="operateFlag")String operateFlag){
 		try{
@@ -235,16 +240,16 @@ public class OrderController {
 	/**
 	 * 小程序接口 支付成功
 	 * 支付成功后修改订单状态
-	 * @param userId
-	 * @param userType
-	 * @param orderId
-	 * @param message
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param orderId 订单id
+	 * @param message 用户留言
 	 * @return
 	 */
 	@RequestMapping("/payOrder")
 	public Object payOrder( 
 			  @RequestParam(required=true,value="userId")String userId,
-	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=false,value="userType")String userType,
 	          @RequestParam(required=true,value="orderId")String orderId,
 	          @RequestParam(required=true,value="message")String message){
 		try{
@@ -270,7 +275,7 @@ public class OrderController {
 	@RequestMapping("/createOrder")
 	public Object createOrder(
 			@RequestParam(required=true,value="userId")String userId,
-	        @RequestParam(required=true,value="userType")String userType,
+	        @RequestParam(required=false,value="userType")String userType,
 	        @RequestParam(required=true,value="receiverAreaName")String receiverAreaName,
 	        @RequestParam(required=true,value="receiverMobile")String receiverMobile,
 	        @RequestParam(required=true,value="receiver")String receiver,

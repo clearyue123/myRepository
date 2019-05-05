@@ -83,8 +83,16 @@ public interface OrderService {
 	 * @param status
 	 * @return
 	 */
-	public List<Map<String, Object>> orderList(String userId,String status);
+	public List<Map<String,Object>> orderList(String userId,String status);
 	
+	/**
+	 * 小程序接口 列表功能
+	 * 用户id获取订单详情
+	 * @param userId
+	 * @param status
+	 * @return
+	 */
+	public List<Map<String,Object>> itemList(Long orderId);
 	/**
 	 * 小程序接口 orderId删除订单
 	 * @param orderId
@@ -103,4 +111,11 @@ public interface OrderService {
 	 * @param orderId
 	 */
 	public void updateStatusById(Map<String,Object> paramMap);
+	
+	/**
+	 * 小程序接口 订单id获取商品
+	 * @param orderId
+	 * @return
+	 */
+	public List<Map<String,Object>> selectItemsByOrderId(Long orderId);
 }

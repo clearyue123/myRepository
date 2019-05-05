@@ -150,8 +150,14 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/getGoodsList")
-	public ApiResult getGoodsList(int page, int rows) {
+	public ApiResult getGoodsList(
+			@RequestParam(required = false, value = "category3Id" ,defaultValue = "-1") Long category3Id,
+			@RequestParam(required = false, value = "page" ,defaultValue = "1") int page,
+			@RequestParam(required = false, value = "rows" ,defaultValue = "10") int rows) {
 		TbGoods goods = new TbGoods();
+		if(category3Id != -1){
+			goods.setCategory3Id(category3Id);
+		}
 		PageResult result = goodsService.findPage(goods, page, rows);
 		return new ApiResult(200, "查询成功", result);
 	}
@@ -163,7 +169,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/getGoodsDetail")
-	public ApiResult getGoodsDetail(@RequestBody Long id) {
+	public ApiResult getGoodsDetail(Long id) {
 		Goods goods = goodsService.findOne(id);
 		return new ApiResult(200, "查询成功", goods);
 	}

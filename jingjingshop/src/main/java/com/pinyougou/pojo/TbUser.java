@@ -28,7 +28,7 @@ public class TbUser  extends  TbBase implements Serializable{
 
     private String headPic;
 
-    private String qq;
+    private String wxCode;
 
     private Long accountBalance;
 
@@ -48,8 +48,6 @@ public class TbUser  extends  TbBase implements Serializable{
 
     private Date lastLoginTime;
     
-    private String birthdayStr;
-    
     private String openId;
 
     public String getOpenId() {
@@ -66,14 +64,6 @@ public class TbUser  extends  TbBase implements Serializable{
 
 	public void setHeadPic(String headPic) {
 		this.headPic = headPic;
-	}
-
-	public String getBirthdayStr() {
-		return birthdayStr;
-	}
-
-	public void setBirthdayStr(String birthdayStr) {
-		this.birthdayStr = birthdayStr;
 	}
 
 	public Long getId() {
@@ -164,16 +154,15 @@ public class TbUser  extends  TbBase implements Serializable{
         this.status = status == null ? null : status.trim();
     }
 
+    public String getWxCode() {
+		return wxCode;
+	}
 
-    public String getQq() {
-        return qq;
-    }
+	public void setWxCode(String wxCode) {
+		this.wxCode = wxCode;
+	}
 
-    public void setQq(String qq) {
-        this.qq = qq == null ? null : qq.trim();
-    }
-
-    public Long getAccountBalance() {
+	public Long getAccountBalance() {
         return accountBalance;
     }
 
@@ -246,33 +235,4 @@ public class TbUser  extends  TbBase implements Serializable{
         this.lastLoginTime = lastLoginTime;
     }
 
-
-    @Override
-    public String toString() {
-        return "TbUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", sourceType='" + sourceType + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
-                ", head_pic='" + headPic + '\'' +
-                ", qq='" + qq + '\'' +
-                ", accountBalance=" + accountBalance +
-                ", isMobileCheck='" + isMobileCheck + '\'' +
-                ", isEmailCheck='" + isEmailCheck + '\'' +
-                ", sex='" + sex + '\'' +
-                ", userLevel=" + userLevel +
-                ", points=" + points +
-                ", experienceValue=" + experienceValue +
-                ", birthday=" + birthday +
-                ", lastLoginTime=" + lastLoginTime +
-                ", birthdayStr='" + birthdayStr + '\'' +
-                '}';
-    }
 }

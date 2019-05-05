@@ -127,14 +127,15 @@ public class AddressController {
 	
 	/**
 	 * 小程序  新增地址
-	 * @param userId
-	 * @param provinceId
-	 * @param cityId
-	 * @param townId
-	 * @param mobile
-	 * @param address
-	 * @param contact
-	 * @param alias
+	 * @param userId 用户id
+	 * @param provinceId 省id
+	 * @param cityId 市id
+	 * @param townId 区id
+	 * @param mobile 手机号
+	 * @param address 详细地址
+	 * @param contact 联系人
+	 * @param alias 别名
+	 * @param notes 备注
 	 * @return
 	 */
 	@RequestMapping("/add")
@@ -145,7 +146,8 @@ public class AddressController {
 			          @RequestParam(required = true, value = "mobile")String mobile,
 			          @RequestParam(required = true, value = "address")String address,
 			          @RequestParam(required = true, value = "contact")String contact,
-			          @RequestParam(required = true, value = "alias")String alias){
+			          @RequestParam(required = false,value = "alias")String alias,
+			          @RequestParam(required=false,value="notes")String notes){
 		try {
 			TbAddress tbAddress = new TbAddress();
 			tbAddress.setUserId(userId);
@@ -157,6 +159,7 @@ public class AddressController {
 			tbAddress.setContact(contact);
 			tbAddress.setAlias(alias);
 			tbAddress.setCreateDate(new Date());
+			tbAddress.setIsDefault("0");//是否默认地址 1:是 0:否
 			addressService.add(tbAddress);
 			return new ApiResult(200, "地址新增成功", "");
 		} catch (Exception e) {
