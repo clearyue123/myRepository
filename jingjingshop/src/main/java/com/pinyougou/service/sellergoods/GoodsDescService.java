@@ -66,5 +66,12 @@ public interface GoodsDescService {
      * @return
      */
 	public List<Map<String, Object>> findSpeListByGoodsId(long goodsId);
+
+    /**
+     * 商品详情信息
+     * @param parseLong
+     * @return
+     */
+	public Map<String, Object> showGoodsDetail(long goodsId);
 	
 }

@@ -34,4 +34,6 @@ public interface TbGoodsDescMapper {
 	List<Map<String, Object>> selectSpeIdsBygoodsId(long goodsId);
 	
 	List<Map<String,Object>> selectSpeOptionById(Long speId);
+	
+	Map<String,Object> showItemDetail(Long goodsId);
 }

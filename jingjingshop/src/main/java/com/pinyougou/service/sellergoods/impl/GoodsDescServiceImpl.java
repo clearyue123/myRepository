@@ -119,5 +119,11 @@ public class GoodsDescServiceImpl implements GoodsDescService {
 		}
 		return speMapList;
 	}
+
+	@Override
+	public Map<String, Object> showGoodsDetail(long goodsId) {
+		Map<String, Object> goodsDetail = goodsDescMapper.showItemDetail(goodsId);
+		return goodsDetail;
+	}
 	
 }

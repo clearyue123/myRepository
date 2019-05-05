@@ -1,4 +1,5 @@
 package com.pinyougou.controller.manage;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -135,20 +136,16 @@ public class GoodsDescController {
 	 * @return
 	 */
 	@RequestMapping("/getGoodsDescDetails")
-	public ApiResult getGoodsDescDetails(Long id){
-		TbGoodsDesc result = goodsDescService.findOne(id);
-		return new ApiResult(200,"获取成功",result);
-	}
-	
-	@RequestMapping("/getGoodsSpecification")
-	public ApiResult getGoodsSpecification(@RequestParam(required=true,value="userId")String userId,
-			                               @RequestParam(required=true,value="goodsId")String goodsId){
+	public ApiResult getGoodsDescDetails(@RequestParam(required=true,value="goodsId")String goodsId){
 		try{
-			List<Map<String, Object>> data = goodsDescService.findSpeListByGoodsId(Long.parseLong(goodsId));
-			return new ApiResult(200, "查询成功", data);
+			Map<String,Object> data = goodsDescService.showGoodsDetail(Long.parseLong(goodsId));
+			List<Map<String, Object>> speData = goodsDescService.findSpeListByGoodsId(Long.parseLong(goodsId));
+			data.put("speData", speData);
+			return new ApiResult(200,"获取成功",data);
 		}catch(Exception e){
 			e.printStackTrace();
-			return new ApiResult(201, "查询失败", "");
+			return new ApiResult(201,"商品数据不存在","");
 		}
+		
 	}
 }
