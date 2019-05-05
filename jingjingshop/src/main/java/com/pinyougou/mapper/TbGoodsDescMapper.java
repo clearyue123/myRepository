@@ -1,6 +1,7 @@
 package com.pinyougou.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,8 @@ public interface TbGoodsDescMapper {
     int updateByPrimaryKeySelective(TbGoodsDesc record);
 
     int updateByPrimaryKey(TbGoodsDesc record);
+
+	List<Map<String, Object>> selectSpeIdsBygoodsId(long goodsId);
+	
+	List<Map<String,Object>> selectSpeOptionById(Long speId);
 }

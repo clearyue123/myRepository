@@ -196,12 +196,6 @@
 		values (#{username},#{password},#{name},#{phone},#{sex},#{email},#{nickName},#{wxCode},#{headPic}, #{birthday},#{openId})
 	</insert>
 
-
-
-
-	<!-- ;/分界线-; -->
-
-
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.pinyougou.pojo.TbUserExample">
 		select

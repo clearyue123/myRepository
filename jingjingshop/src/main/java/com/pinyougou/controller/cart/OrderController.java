@@ -125,7 +125,7 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbOrder order, int page, int rows  ){
+	public PageResult search(@RequestBody(required = false) TbOrder order, int page, int rows  ){
 		return orderService.findPage(order, page, rows);		
 	}
 	
@@ -216,7 +216,7 @@ public class OrderController {
 	@RequestMapping("/oprateOrder")
 	public Object oprateOrder(
 			  @RequestParam(required=true,value="userId")String userId,
-	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=false,value="userType")String userType,
 	          @RequestParam(required=true,value="orderId")String orderId,
 	          @RequestParam(required=true,value="operateFlag")String operateFlag){
 		try{
@@ -249,7 +249,7 @@ public class OrderController {
 	@RequestMapping("/payOrder")
 	public Object payOrder( 
 			  @RequestParam(required=true,value="userId")String userId,
-	          @RequestParam(required=true,value="userType")String userType,
+	          @RequestParam(required=false,value="userType")String userType,
 	          @RequestParam(required=true,value="orderId")String orderId,
 	          @RequestParam(required=true,value="message")String message){
 		try{
@@ -275,7 +275,7 @@ public class OrderController {
 	@RequestMapping("/createOrder")
 	public Object createOrder(
 			@RequestParam(required=true,value="userId")String userId,
-	        @RequestParam(required=true,value="userType")String userType,
+	        @RequestParam(required=false,value="userType")String userType,
 	        @RequestParam(required=true,value="receiverAreaName")String receiverAreaName,
 	        @RequestParam(required=true,value="receiverMobile")String receiverMobile,
 	        @RequestParam(required=true,value="receiver")String receiver,

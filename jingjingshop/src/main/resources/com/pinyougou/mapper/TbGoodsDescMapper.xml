@@ -241,4 +241,28 @@
       sale_service = #{saleService,jdbcType=VARCHAR}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectSpeIdsBygoodsId" parameterType="long" resultType="java.util.Map">
+	     SELECT
+			t1.spe_id speId,
+		    t2.spec_name specName
+		FROM
+			tb_goods_spe t1
+		LEFT JOIN tb_specification t2 ON t1.spe_id = t2.id
+		WHERE
+			t1.goods_id = #{goodsId}
+  </select>
+  
+  <select id="selectSpeOptionById" parameterType="long" resultType="java.util.Map">
+		  SELECT
+			t2.option_name optionName
+		FROM
+			tb_specification t1
+		LEFT JOIN tb_specification_option t2 ON t1.id = t2.spec_id
+		WHERE
+			t1.id = #{speId}
+		ORDER BY
+			t2.orders
+  </select>
+  
 </mapper>

@@ -14,12 +14,9 @@ import com.pinyougou.service.user.UserService;
 import entity.PageResult;
 import entity.Result;
 import util.PhoneFormatCheckUtils;
-import util.TextUtils;
 
 /**
- * controller
- *
- * @author Administrator
+ * 用户管理 controller
  */
 @RestController
 @RequestMapping("/user")
@@ -30,7 +27,6 @@ public class UserController {
 
     /**
      * 修改
-     *
      * @param user
      * @return
      */
@@ -78,7 +74,6 @@ public class UserController {
 
     /**
      * 返回全部列表
-     *
      * @return
      */
     @RequestMapping("/findPage")
@@ -88,7 +83,6 @@ public class UserController {
 
     /**
      * 增加
-     *
      * @param user
      * @return
      */

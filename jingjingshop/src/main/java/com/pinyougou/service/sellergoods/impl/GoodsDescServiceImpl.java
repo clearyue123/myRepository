@@ -1,5 +1,7 @@
 package com.pinyougou.service.sellergoods.impl;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,6 +107,17 @@ public class GoodsDescServiceImpl implements GoodsDescService {
 		
 		Page<TbGoodsDesc> page= (Page<TbGoodsDesc>)goodsDescMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
+	}
+
+	@Override
+	public List<Map<String, Object>> findSpeListByGoodsId(long goodsId) {
+		List<Map<String,Object>> speMapList = goodsDescMapper.selectSpeIdsBygoodsId(goodsId);
+		for(Map<String,Object> speMap:speMapList){
+			Long speId = (Long)speMap.get("speId");
+			List<Map<String,Object>> speMapOpList = goodsDescMapper.selectSpeOptionById(speId);
+			speMap.put("speMapOpList",speMapOpList);
+		}
+		return speMapList;
 	}
 	
 }

@@ -1,15 +1,14 @@
 package com.pinyougou.controller.manage;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pinyougou.common.ApiResult;
-import com.pinyougou.pojo.TbContent;
 import com.pinyougou.pojo.TbGoodsDesc;
 import com.pinyougou.service.sellergoods.GoodsDescService;
 
@@ -139,5 +138,17 @@ public class GoodsDescController {
 	public ApiResult getGoodsDescDetails(Long id){
 		TbGoodsDesc result = goodsDescService.findOne(id);
 		return new ApiResult(200,"获取成功",result);
+	}
+	
+	@RequestMapping("/getGoodsSpecification")
+	public ApiResult getGoodsSpecification(@RequestParam(required=true,value="userId")String userId,
+			                               @RequestParam(required=true,value="goodsId")String goodsId){
+		try{
+			List<Map<String, Object>> data = goodsDescService.findSpeListByGoodsId(Long.parseLong(goodsId));
+			return new ApiResult(200, "查询成功", data);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ApiResult(201, "查询失败", "");
+		}
 	}
 }

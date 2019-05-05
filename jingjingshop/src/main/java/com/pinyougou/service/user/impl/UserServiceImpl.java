@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.TbUserMapper;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.pojo.TbUserExample;
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService {
     public PageResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(null);
+        System.out.println(page);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -133,9 +135,9 @@ public class UserServiceImpl implements UserService {
             }
 
         }
-
-        Page<TbUser> page = (Page<TbUser>) userMapper.selectByExample(example);
-        return new PageResult(page.getTotal(), page.getResult());
+        List<TbUser> userList = userMapper.selectByExample(example);
+        PageInfo<TbUser> page = new PageInfo<>(userList);
+        return new PageResult(page.getTotal(), page.getList());
     }
 
 

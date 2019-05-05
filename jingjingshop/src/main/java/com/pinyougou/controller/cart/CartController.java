@@ -13,12 +13,9 @@ import com.pinyougou.common.ApiResult;
 import com.pinyougou.pojo.TbShopCart;
 import com.pinyougou.service.cart.CartService;
 
-import util.IdWorker;
-
 /**
- * controller
+ * 购物车 控制层
  * @author yue
- *
  */
 @RestController
 @RequestMapping("/cart")
@@ -27,6 +24,19 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	/**
+	 * 新增订单
+	 * @param userId 用户id
+	 * @param itemId 商品id
+	 * @param sellerId 店铺id
+	 * @param image 商品封面
+	 * @param title 商品标题
+	 * @param marketCost 打折价
+	 * @param costPirce 商城价
+	 * @param num
+	 * @param postFee
+	 * @return
+	 */
 	@RequestMapping("/add")
 	public Object add(@RequestParam(value="userId",required=false)String userId,
 			@RequestParam(value="itemId",required=false)String itemId,
@@ -56,6 +66,11 @@ public class CartController {
 		}
 	}
 	
+	/**
+	 * 购物车列表查询
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping("/list")
 	public Object listCart(@RequestParam(value="userId",required=true)String userId){
 		try{
@@ -69,9 +84,17 @@ public class CartController {
 		}
 	}
 	
+	/**
+	 * 清空购物车
+	 * @param userId 用户id
+	 * @param userType 用户类型
+	 * @param isClearFlag 是否清空
+	 * @param cartIds 购物车id数组
+	 * @return
+	 */
 	@RequestMapping("/clearCart")
 	public Object clearCart(@RequestParam(value="userId",required=true)String userId,
-			@RequestParam(value="userType",required=true)String userType,
+			@RequestParam(value="userType",required=false)String userType,
 			@RequestParam(value="isClearFlag",required=false)String isClearFlag,
 			@RequestParam(value="cartIds",required=true)String[] cartIds){
 		try{
