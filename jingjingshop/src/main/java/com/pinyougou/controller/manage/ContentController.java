@@ -122,8 +122,8 @@ public class ContentController {
 	 * @return
 	 */
 	@RequestMapping("/getContentList")
-	public ApiResult getContentList(int page,int rows) {
-		PageResult pageResult = contentService.findPage(page, rows);
+	public ApiResult getContentList() {
+		List<TbContent> pageResult = contentService.findAll();
 		return new ApiResult(200,"获取成功", pageResult);
 	}
 }

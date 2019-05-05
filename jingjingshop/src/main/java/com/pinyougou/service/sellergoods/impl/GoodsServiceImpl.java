@@ -238,13 +238,16 @@ public class GoodsServiceImpl implements GoodsService {
 		if(goods.getIsEnableSpec()!=null && goods.getIsEnableSpec().length()>0){
 			criteria.andIsEnableSpecLike("%"+goods.getIsEnableSpec()+"%");
 		}
+		if(goods.getCategory3Id()!=null && goods.getCategory3Id()!=-1){
+			criteria.andCategory3IdEqualTo(goods.getCategory3Id());
+		}
 		if(goods.getIsDelete()!=null && goods.getIsDelete().length()>0){
 			criteria.andIsDeleteLike("%"+goods.getIsDelete()+"%");
 		}
 
 		}
 		
-		Page<TbGoods> page= (Page<TbGoods>)goodsMapper.selectByExample(example);		
+		Page<TbGoods> page= (Page<TbGoods>)goodsMapper.selectByExample(example);
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
