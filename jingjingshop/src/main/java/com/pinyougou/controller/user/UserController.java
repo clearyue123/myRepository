@@ -50,10 +50,10 @@ public class UserController {
         try {
             if (user.getId()==null) {
                 userService.add(user);
-                return new ApiResult(200, "新增成功", user);
+                return new ApiResult(200, "新增成功", "新增成功");
                 }
              userService.update(user);
-                return new ApiResult(200, "编辑成功", user);
+                return new ApiResult(200, "编辑成功", "编辑成功");
         } catch (Exception e) {
             e.printStackTrace();
         }
