@@ -183,17 +183,17 @@ public class OrderController {
 	@RequestMapping("/showOrderDetail")
 	public Object showOrderDetail(
 			          @RequestParam(required=true,value="userId")String userId,
-			          @RequestParam(required=true,value="userType")String userType,
-			          @RequestParam(required=true,value="orderId")String orderId,
-			          @RequestParam(required=true,value="status")String status
+			          @RequestParam(required=false,value="userType")String userType,
+			          @RequestParam(required=true,value="orderId")String orderId
 			          ){
 		try{
 			Map<String,Object> paramMap = new HashMap<>();
-			paramMap.put("userId", userId);
-			paramMap.put("userType", userType);
-			paramMap.put("orderId", orderId);
-			paramMap.put("status", status);
+			paramMap.put("USERID", userId);
+			paramMap.put("USERTYPE", userType);
+			paramMap.put("ORDERID", orderId);
 			Map<String, Object> orderDetailMap = orderService.selectOrderDetail(paramMap);
+			List<Map<String, Object>> itemMapList = orderService.selectItemsByOrderId(Long.parseLong(orderId));
+			orderDetailMap.put("itemMapList", itemMapList);
 			return new ApiResult(200, "查询成功", orderDetailMap);
 		}catch(Exception e){
 			e.printStackTrace();
