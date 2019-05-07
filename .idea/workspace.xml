@@ -11,7 +11,12 @@
       <change beforePath="$PROJECT_DIR$/../HomeWork2/T204SSH2" beforeDir="false" afterPath="$PROJECT_DIR$/../HomeWork2/T204SSH2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Work/shopping/myRepository" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/shopping/myRepository" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Work/vue/newRisk" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/vue/newRisk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/controller/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/mapper/TbUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/mapper/TbUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="50" column="37" lean-forward="true" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+            <state relative-caret-position="275">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -352,7 +357,8 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -375,7 +381,7 @@
       <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="13" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -428,8 +434,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="50" column="37" lean-forward="true" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+        <state relative-caret-position="275">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
