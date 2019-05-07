@@ -42,7 +42,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ApiResult(00004, "操作失败", user);
+        return new ApiResult(00004, "操作失败", "操作失败");
     }
 
 
@@ -58,7 +58,7 @@ public class UserController {
         if (users != null) {
             return new ApiResult(200, "获取成功", users);
         }
-        return new ApiResult(00005, "无此人信息", users);
+        return new ApiResult(00005, "无此人信息", "无此人信息");
     }
 
     /**
