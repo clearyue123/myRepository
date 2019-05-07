@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/../HomeWork2/T204SSH2" beforeDir="false" afterPath="$PROJECT_DIR$/../HomeWork2/T204SSH2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Work/shopping/myRepository" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/shopping/myRepository" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Work/vue/newRisk" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/vue/newRisk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" afterDir="false" />
@@ -19,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myRepository" beforeDir="false" afterPath="$PROJECT_DIR$/../myRepository" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vue-upms" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-upms" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-upms/src/components/manage/3d/shiyanshi.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-upms/src/components/manage/3d/shiyanshi.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="450">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
             </state>
           </provider>
         </entry>
@@ -55,7 +55,8 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -196,7 +197,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -337,7 +338,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -388,8 +389,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="450">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
         </state>
       </provider>
     </entry>
