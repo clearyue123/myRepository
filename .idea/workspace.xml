@@ -12,14 +12,6 @@
       <change beforePath="$PROJECT_DIR$/../Work/shopping/myRepository" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/shopping/myRepository" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Work/vue/newRisk" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/vue/newRisk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/controller/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pinyougou/mapper/TbUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/applicationContext-service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/controller/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/mapper/TbUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/jingjingshop-0.0.1-SNAPSHOT/WEB-INF/classes/com/pinyougou/mapper/TbUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.yjj.jingjingshop/jingjingshop/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myRepository" beforeDir="false" afterPath="$PROJECT_DIR$/../myRepository" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-upms" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-upms" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="-125">
+              <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -46,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/com/pinyougou/mapper/TbUserMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4600">
+            <state relative-caret-position="822">
               <caret line="184" selection-start-line="184" selection-end-line="184" />
             </state>
           </provider>
@@ -197,7 +189,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -210,6 +202,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,7 +240,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -335,10 +327,10 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -384,20 +376,21 @@
     <MESSAGE value="第6次提交谢琦" />
     <MESSAGE value="第7次提交谢琦" />
     <MESSAGE value="第8次提交谢琦" />
-    <option name="LAST_COMMIT_MESSAGE" value="第8次提交谢琦" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/clearyue123/myRepository into xieqi&#10;&#10;# Conflicts:&#10;#&#9;jingjingshop/src/main/java/com/pinyougou/controller/user/UserController.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/clearyue123/myRepository into xieqi&#10;&#10;# Conflicts:&#10;#&#9;jingjingshop/src/main/java/com/pinyougou/controller/user/UserController.java" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/pinyougou/mapper/TbUserMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        <state relative-caret-position="822">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/pinyougou/mapper/TbUserMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pinyougou/controller/user/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4600">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        <state relative-caret-position="-125">
+          <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
         </state>
       </provider>
     </entry>
